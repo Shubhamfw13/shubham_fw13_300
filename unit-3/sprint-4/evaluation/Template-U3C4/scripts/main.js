@@ -15,7 +15,7 @@ async function apiCall(url) {
  function appendArticles(articles, main) {
         articles.map((elem)=>{
         let newsdiv = document.createElement("div")
-        newsdiv.setAttribute("id","article")
+        newsdiv.setAttribute("id","articlee")
   
         let title = document.createElement("p") 
         title.innerHTML = elem.title
@@ -27,15 +27,19 @@ async function apiCall(url) {
         images.src = elem.image
   
         newsdiv.append(title,descrip,images)
-        // main.append(newsdiv)
-        // // nextpageData(elem)
+        main.append(newsdiv)
+
+        newsdiv.addEventListener("click",()=>{
+            nextpageData(elem)
+        })
+        
       })
 }
 
 async function nextpage(articles,main){
     articles.map((elem)=>{
         let newsdiv = document.createElement("div")
-        newsdiv.setAttribute("id","article")
+        newsdiv.setAttribute("id","articlee")
   
         let title = document.createElement("p") 
         title.innerHTML = elem.title
@@ -51,11 +55,11 @@ async function nextpage(articles,main){
       })
 }
 
-let article = []
+let artic = []
 
 function nextpageData(elem){
-    article.push(elem)
-    localStorage.setItem("clicked",JSON.stringify(article));
+    artic.push(elem)
+    localStorage.setItem("article",JSON.stringify(artic));
     window.location.href="/news.html"
 }
 

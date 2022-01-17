@@ -40,8 +40,11 @@
 
   let selectedData = JSON.parse(localStorage.getItem("Clicked")) || []
   
-  console.log()
+  // console.log(selectedData)
 
+  let arr = []
+
+  arr.push(selectedData[selectedData.length-1])
 
   import { apiCall,appendArticles,nextpage} from "./scripts/main.js"
 

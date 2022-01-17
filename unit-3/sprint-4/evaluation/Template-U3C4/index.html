@@ -1,36 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
-
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home</title>
+    <link rel="stylesheet" href="./styles/main.css">
   </head>
 
   <body>
     <div id="container">
-      <div id="sidebar">
-
-     
-
-
-      </div>
+      <div id="sidebar"></div>
 
       <div id="main">
         <!--DO NOT CHANGE THIS ID's-->
-
       </div>
     </div>
   </body>
-
 </html>
 <script type="module">
-import sidebar from "./components/sidebar.js"
-document.getElementById("sidebar").innerHTML = sidebar()
+  import sidebar from "./components/sidebar.js";
+  document.getElementById("sidebar").innerHTML = sidebar();
 
-async function  apiCall(){
-  let res = await fetch ``
-}
+  async function apiCall() {
+   try{
+    let res =
+      await fetch`https://gnews.io/api/v4/top-headlines?token=4176555ef49095efce1b0d7cc43504f9&lang=en`;
+
+    let data = await res.json()
+    let dat = data.articles
+    console.log(dat)
+    appendArticles(dat)
+   }
+   catch(err){
+    console.log(err)
+   }
+  }
+let topstories = document.getElementById("main")
+
+  async function appendArticles(dat){
+    dat.map((elem)=>{
+      let newsdiv = document.createElement("div")
+      newsdiv.setAttribute("id","article")
+
+      let title = document.createElement("p") 
+      title.innerHTML = elem.title
+
+      let descrip = document.createElement("p");
+      descrip.innerHTML = elem.description
+
+      let images = document.createElement("img");
+      images.src = elem.image
+
+      newsdiv.append(title,descrip,images)
+      topstories.append(newsdiv)
+    })
+  }
+
+
+
+
+  apiCall()
+
 
 </script>

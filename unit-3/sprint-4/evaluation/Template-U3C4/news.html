@@ -46,9 +46,10 @@
 
   arr.push(selectedData[selectedData.length-1])
 
+  let result = document.getElementById("main")
+
   import { apiCall,appendArticles,nextpage} from "./scripts/main.js"
 
-
-
+  nextpage(arr,result)
 
 </script>

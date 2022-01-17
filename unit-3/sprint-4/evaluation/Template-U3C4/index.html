@@ -23,7 +23,7 @@
   document.getElementById("sidebar").innerHTML = sidebar();
 
   
-  let url = `https://gnews.io/api/v4/top-headlines?token=3fa0549a7f8fdccee0ce61b3d4ecb783&lang=en`
+  let url = `https://gnews.io/api/v4/top-headlines?&lang=en&country=in&token=3a2d745dfd78890df88e103ccdeec837`
 
   let res  = await apiCall (url)
 
@@ -31,10 +31,6 @@
   let topstories = document.getElementById("main")
   appendArticles (res,topstories)
 
- 
-// let clickedarticle = document.getElementById("article")
-// // clickedarticle.addEventListener("click",)
-// //   console.log(click)
 
 
 
@@ -45,3 +41,4 @@
 
 
 </script>
+

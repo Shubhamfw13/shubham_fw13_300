@@ -65,4 +65,4 @@ function nextpageData(elem){
 
 
 
-export { apiCall, appendArticles,nextpage };
+export { apiCall, appendArticles,nextpage};

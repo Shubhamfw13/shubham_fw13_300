@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="stylesheet" href="./styles/main.css">
   </head>
 
   <body>
@@ -32,3 +33,19 @@
   </body>
 
 </html>
+<script type="module">
+ import sidebar from "./components/sidebar.js";
+  document.getElementById("sidebar").innerHTML = sidebar();
+
+
+  let selectedData = JSON.parse(localStorage.getItem("Clicked")) || []
+  
+  console.log()
+
+
+  import { apiCall,appendArticles,nextpage} from "./scripts/main.js"
+
+
+
+
+</script>

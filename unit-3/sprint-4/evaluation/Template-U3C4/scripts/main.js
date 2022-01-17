@@ -27,8 +27,38 @@ async function apiCall(url) {
         images.src = elem.image
   
         newsdiv.append(title,descrip,images)
+        // main.append(newsdiv)
+        // // nextpageData(elem)
+      })
+}
+
+async function nextpage(articles,main){
+    articles.map((elem)=>{
+        let newsdiv = document.createElement("div")
+        newsdiv.setAttribute("id","article")
+  
+        let title = document.createElement("p") 
+        title.innerHTML = elem.title
+  
+        let descrip = document.createElement("p");
+        descrip.innerHTML = elem.description
+  
+        let images = document.createElement("img");
+        images.src = elem.image
+  
+        newsdiv.append(title,descrip,images)
         main.append(newsdiv)
       })
 }
 
-export { apiCall, appendArticles };
+let article = []
+
+function nextpageData(elem){
+    article.push(elem)
+    localStorage.setItem("clicked",JSON.stringify(article));
+    window.location.href="/news.html"
+}
+
+
+
+export { apiCall, appendArticles,nextpage };

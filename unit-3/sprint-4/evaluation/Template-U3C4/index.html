@@ -22,45 +22,24 @@
   import sidebar from "./components/sidebar.js";
   document.getElementById("sidebar").innerHTML = sidebar();
 
-  async function apiCall() {
-   try{
-    let res =
-      await fetch`https://gnews.io/api/v4/top-headlines?token=4176555ef49095efce1b0d7cc43504f9&lang=en`;
+  
+  let url = `https://gnews.io/api/v4/top-headlines?token=4176555ef49095efce1b0d7cc43504f9&lang=en`
 
-    let data = await res.json()
-    let dat = data.articles
-    console.log(dat)
-    appendArticles(dat)
-   }
-   catch(err){
-    console.log(err)
-   }
-  }
-let topstories = document.getElementById("main")
+  let res  = await apiCall (url)
 
-  async function appendArticles(dat){
-    dat.map((elem)=>{
-      let newsdiv = document.createElement("div")
-      newsdiv.setAttribute("id","article")
+ 
+  let topstories = document.getElementById("main")
+  appendArticles (res,topstories)
 
-      let title = document.createElement("p") 
-      title.innerHTML = elem.title
-
-      let descrip = document.createElement("p");
-      descrip.innerHTML = elem.description
-
-      let images = document.createElement("img");
-      images.src = elem.image
-
-      newsdiv.append(title,descrip,images)
-      topstories.append(newsdiv)
-    })
-  }
+ 
 
 
 
 
-  apiCall()
+
+
+  import { apiCall,appendArticles} from "./scripts/main.js"
+
 
 
 </script>

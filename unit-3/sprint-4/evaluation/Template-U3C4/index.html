@@ -22,8 +22,8 @@
   import sidebar from "./components/sidebar.js";
   document.getElementById("sidebar").innerHTML = sidebar();
 
-  
-  let url = `https://gnews.io/api/v4/top-headlines?&lang=en&country=in&token=3a2d745dfd78890df88e103ccdeec837`
+
+  let url = `https://gnews.io/api/v4/top-headlines?token=578b857651758c370dd86b4eebd2f3c3&lang=en`
 
   let res  = await apiCall (url)
 

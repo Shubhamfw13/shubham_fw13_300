@@ -158,7 +158,7 @@ app.post("/fixed", async (req,res)=>{
 
  app.get("/fixed/:id", async (req,res)=>{
     try{
-     const fixed = await Fixed.find().populate({path:"user_id",select:["first_name","last_name","adress"]}).lean().exec();
+     const fixed = await Fixed.find().populate({path:"user_id",select:["first_name","last_name","address"]}).lean().exec();
      return res.status(200).send(fixed)
     }catch(err){
         return res.status(500).send(err.message)

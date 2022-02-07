@@ -65,7 +65,7 @@ app.post("/user", async (req,res)=>{
 
  app.delete("/user/:id", async (req,res)=>{
     try{
-     const user = await User.findByIdAndUpdate(req.params.id,{new:true}).lean().exec();
+     const user = await User.findByIdAndDelete(req.params.id,{new:true}).lean().exec();
      return res.status(201).send(user)
     }catch(err){
         return res.status(500).send(err.message)
@@ -156,7 +156,7 @@ app.post("/fixed", async (req,res)=>{
     }
  })
 
- app.get("/fixed", async (req,res)=>{
+ app.get("/fixed/:id", async (req,res)=>{
     try{
      const fixed = await Fixed.find().populate({path:"user_id",select:["first_name","last_name","adress"]}).lean().exec();
      return res.status(200).send(fixed)

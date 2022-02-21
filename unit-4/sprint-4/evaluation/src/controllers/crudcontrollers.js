@@ -55,3 +55,4 @@ module.exports = (model) => {
     Delete: Delete(model),
   };
 };
+

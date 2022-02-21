@@ -1,7 +1,7 @@
 const post = (model) => async (req, res) => {
   try {
     const item = await model.create(req.body);
-    return res.status.send(item);
+    return res.send(item);
   } catch (err) {
     return res.status(500).send({ error: err.message });
   }

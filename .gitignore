@@ -200,3 +200,4 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+/unit-5/sprint-2/day-1/assignments/state-management/node_modules

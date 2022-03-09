@@ -10,6 +10,7 @@ export const Todo = () => {
   return (
     <div>
       <TodoInput addTodo={addTodo} />
+
       {todos.map((e) => (
         <Todoitem todo={e} />
       ))}

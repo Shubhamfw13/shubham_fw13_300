@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export const TodoInput = ({ addTodo }) => {
+export const TodoInput = ({ handleAdd }) => {
   const [text, setText] = useState("");
   return (
     <div>
@@ -13,7 +13,7 @@ export const TodoInput = ({ addTodo }) => {
       />
       <button
         onClick={() => {
-          addTodo(text);
+          handleAdd(text);
         }}
       >
         Add Task

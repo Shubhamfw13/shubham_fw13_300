@@ -1,21 +1,17 @@
-import { useState } from "react";
 import "./App.css";
-import { Groceries } from "./components/Groceries";
-import { StopWatch } from "./components/Stopwatch";
-
+import { Timer } from "./Components/Timer";
+import { useState } from "react";
 function App() {
   const [show, setShow] = useState(true);
   return (
     <div className="App">
-      {/* <Groceries/> */}
-      {show ? <StopWatch /> : ""}
- 
+      {show ? <Timer /> : ""}
       <button
         onClick={() => {
           setShow(!show);
         }}
       >
-        {show ? "Hide Timer" : "Show Timer"}{" "}
+        {show ? "Hide Timer Button" : "Show Timer Button"}
       </button>
     </div>
   );

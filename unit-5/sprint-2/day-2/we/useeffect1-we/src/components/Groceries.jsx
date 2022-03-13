@@ -10,7 +10,7 @@ export const Groceries = () => {
   }, []);
 
   const getData = () => {
-    axios.get("http://localhost:3004/List?_limit=7").then((res) => {
+    axios.get("http://localhost:3001/List").then((res) => {
       setGroceries(res.data);
     });
   };
@@ -20,7 +20,7 @@ export const Groceries = () => {
       <input type="text" onChange={(e) => setText(e.target.value)} />
       <button
         onClick={() => {
-          fetch("http://localhost:3004/List", {
+          fetch("http://localhost:3001/List", {
             method: "POST",
             body: JSON.stringify({ title: text, purchased: false }),
             headers: {
@@ -34,8 +34,12 @@ export const Groceries = () => {
         Save Grocery
       </button>
       {groceries.map((g) => (
-        <div key={g.id}>{g.title}</div>
+        <GroceryItem key={g.id} item={g.title}></GroceryItem>
       ))}
     </div>
   );
 };
+
+function GroceryItem({ item }) {
+  return <div>{item}</div>;
+}

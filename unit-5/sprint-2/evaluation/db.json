@@ -1,0 +1,22 @@
+{
+  "houses": [
+    {
+      "Name": "sfs",
+      "Owners_name": "sfsf",
+      "Address": "sfsfs",
+      "Area_code": "fsfs",
+      "rent": "fsfsf",
+      "preferred_tenants": "on",
+      "id": 1
+    },
+    {
+      "Name": "sfs",
+      "Owners_name": "fhfhf",
+      "Address": "hfh",
+      "Area_code": "fhf",
+      "rent": "hfh",
+      "preferred_tenants": "on",
+      "id": 2
+    }
+  ]
+}

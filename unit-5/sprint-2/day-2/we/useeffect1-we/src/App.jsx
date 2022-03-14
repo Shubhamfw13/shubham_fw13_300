@@ -7,16 +7,16 @@ function App() {
   const [show, setShow] = useState(true);
   return (
     <div className="App">
-      {/* <Groceries/> */}
-      {show ? <StopWatch /> : ""}
- 
-      <button
+      <Groceries />
+      {/* {show ? <StopWatch /> : ""} */}
+
+      {/* <button
         onClick={() => {
           setShow(!show);
         }}
       >
         {show ? "Hide Timer" : "Show Timer"}{" "}
-      </button>
+      </button> */}
     </div>
   );
 }

@@ -33,9 +33,11 @@ export const Groceries = () => {
       >
         Save Grocery
       </button>
-      {groceries.map((g) => (
-        <GroceryItem key={g.id} item={g.title}></GroceryItem>
-      ))}
+      <div>
+        {groceries.map((g) => (
+          <GroceryItem key={g.id} item={g.title}></GroceryItem>
+        ))}
+      </div>
     </div>
   );
 };

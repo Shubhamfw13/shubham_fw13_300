@@ -5,11 +5,9 @@ import { AddHouse } from "./Components/AddHouse/AddHouse";
 function App() {
   return (
     <div className="App">
-      <button className="toggleForm">
-        <AddHouse />
-        <Rentals />
-      </button>
-      {/* Show component based on state */}
+      <button className="toggleForm"></button>
+      <AddHouse />
+      <Rentals />
       <br />
     </div>
   );

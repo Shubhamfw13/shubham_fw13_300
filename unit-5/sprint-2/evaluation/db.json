@@ -17,6 +17,37 @@
       "rent": "hfh",
       "preferred_tenants": "on",
       "id": 2
+    },
+    {
+      "Name": "sfs",
+      "Owners_name": "sfsf",
+      "Address": "sfsfs",
+      "Area_code": "fsfs",
+      "rent": "fsfsf",
+      "preferred_tenants": "on",
+      "id": 3
+    },
+    {
+      "name": "sdsd",
+      "ownerName": "sdsd",
+      "address": "sdsd",
+      "areaCode": "sdsd",
+      "rent": "sdsd",
+      "bachelor": "on",
+      "married": "",
+      "image": "sds",
+      "id": 4
+    },
+    {
+      "name": "shubham",
+      "ownerName": "kunmar",
+      "address": "sdsd",
+      "areaCode": "ad",
+      "rent": "324234",
+      "bachelor": "on",
+      "married": "",
+      "image": "img",
+      "id": 5
     }
   ]
 }

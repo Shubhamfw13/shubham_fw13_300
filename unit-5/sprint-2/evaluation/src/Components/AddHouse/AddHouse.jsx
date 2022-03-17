@@ -1,46 +1,38 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { Rentals } from "../Rentals/Rentals";
 
-export const AddHouse = () => {
+export const AddHouse = (props) => {
   const [formdata, setFormdata] = useState({
-    Name: "",
-    Owners_name: "",
-    Address: "",
-    Area_code: "",
+    name: "",
+    ownerName: "",
+    address: "",
+    areaCode: "",
     rent: "",
-    preferred_tenants: "",
+    bachelor: "",
+    married: "",
+    image: "",
   });
-
-  useEffect(() => {
-    getData();
-  });
-
-  const [datas, setDatas] = useState([]);
 
   function handleChange(e) {
-    const { id, value } = e.target;
-    setFormdata({ ...formdata, [id]: value });
+    const { className, value } = e.target;
+    setFormdata({ ...formdata, [className]: value });
   }
 
-  function getData() {
-    axios
-      .get("http://localhost:8080/houses")
-      .then((res) => [setDatas(res.data)]);
-  }
+  const getData = props.getData;
 
   function handleSubmit(e) {
     e.preventDefault();
     axios.post("http://localhost:8080/houses", formdata).then(() => {
-      alert("house reg");
       getData();
       setFormdata({
-        Name: "",
-        Owners_name: "",
-        Address: "",
-        Area_code: "",
+        name: "",
+        ownerName: "",
+        address: "",
+        areaCode: "",
         rent: "",
-        preferred_tenants: "",
+        bachelor: "",
+        married: "",
+        image: "",
       });
     });
   }
@@ -50,46 +42,46 @@ export const AddHouse = () => {
       <form onSubmit={handleSubmit}>
         <label>name</label>
         <input
-          onChange={handleChange}
           type="text"
           className="name"
-          id="Name"
+          value={formdata.name}
+          onChange={handleChange}
           required
         />
         <br />
         <label>ownerName</label>
         <input
-          onChange={handleChange}
           type="text"
-          id="Owners_name"
+          value={formdata.ownerName}
           className="ownerName"
+          onChange={handleChange}
           required
         />
         <br />
         <label>address</label>
         <input
-          onChange={handleChange}
+          value={formdata.address}
           type="text"
-          id="Address"
           className="address"
+          onChange={handleChange}
           required
         />
         <br />
         <label>areaCode</label>
         <input
-          onChange={handleChange}
+          value={formdata.areaCode}
           type="text"
-          id="Area_code"
           className="areaCode"
+          onChange={handleChange}
           required
         />
         <br />
         <label>rent</label>
         <input
-          onChange={handleChange}
-          id="rent"
+          value={formdata.rent}
           type="text"
           className="rent"
+          onChange={handleChange}
           required
         />
         <br />
@@ -97,17 +89,28 @@ export const AddHouse = () => {
         <br />
         <label>bachelor</label>
         <input
-          onChange={handleChange}
-          id="preferred_tenants"
+          checked={formdata.bachelor}
           type="checkbox"
           className="bachelor"
+          onChange={handleChange}
         />
         <br />
         <label>married</label>
-        <input checked={""} type="checkbox" className="married" />
+        <input
+          checked={formdata.married}
+          type="checkbox"
+          className="married"
+          onChange={handleChange}
+        />
         <br />
         <label>image</label>
-        <input type="text" className="image" required />
+        <input
+          value={formdata.image}
+          type="text"
+          className="image"
+          onChange={handleChange}
+          required
+        />
         <br />
         <input className="submitBtn" type="submit" />
       </form>

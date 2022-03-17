@@ -1,13 +1,16 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { AddHouse } from "../AddHouse/AddHouse";
 import "./Rentals.css";
 
-export const Rentals = () => {
-  const [datas, setDatas] = useState([]);
+export const Rentals = (props) => {
+  <AddHouse getData={getData} />;
 
   useEffect(() => {
     getData();
-  });
+  }, []);
+
+  const [datas, setDatas] = useState([]);
 
   function getData() {
     axios
@@ -43,20 +46,20 @@ export const Rentals = () => {
           </tr>
         </thead>
         <tbody>
-          {[datas].map((elem, index) => {
+          {datas.map((house, index) => {
             return (
-              <tr key={elem.id} className="houseDetails">
-                <td className="houseId">{elem.id}</td>
-                <td className="houseName">{elem.name} </td>
-                <td className="ownersName">{elem.ownerName}</td>
-                <td className="address">{elem.address}</td>
-                <td className="areaCode">{elem.areaCode}</td>
-                <td className="rent">{elem.rent}</td>
+              <tr key={house.id} className="houseDetails">
+                <td className="houseId">{house.id}</td>
+                <td className="houseName">{house.name} </td>
+                <td className="ownersName">{house.ownerName}</td>
+                <td className="address">{house.address}</td>
+                <td className="areaCode">{house.areaCode}</td>
+                <td className="rent">{house.rent}</td>
                 <td className="preferredTenants">
                   {/* Show text Both or Bachelors or Married based on values */}
                 </td>
                 <td className="houseImage">
-                  <img src={elem.image} alt="house" />
+                  <img src={house.image} alt="house" />
                 </td>
               </tr>
             );

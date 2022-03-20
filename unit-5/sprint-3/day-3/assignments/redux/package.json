@@ -1,5 +1,5 @@
 {
-  "name": "contextapiassignment",
+  "name": "redux",
   "private": true,
   "version": "0.0.0",
   "scripts": {
@@ -14,9 +14,5 @@
   "devDependencies": {
     "@vitejs/plugin-react": "^1.0.7",
     "vite": "^2.8.0"
-  },
-  "main": "vite.config.js",
-  "author": "",
-  "license": "ISC",
-  "description": ""
+  }
 }

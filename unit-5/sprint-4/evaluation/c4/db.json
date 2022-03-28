@@ -7,7 +7,18 @@
       "interests": ["technology", "food", "movies", "culture", "art", "drama"],
       "image": "https://images.unsplash.com/photo",
       "id": 1,
-      "subscribed": [1, 5] 
+      "subscribed": [1, 5]
+    },
+    {
+      "name": "shubham",
+      "password": "1234",
+      "location": "delhi",
+      "interests": [],
+      "image": "https://assets-in.bmscdn.com/discovery-catalog/events/tr:w-400,h-600,bg-CCCCCC:w-400.0,h-660.0,cm-pad_resize,bg-000000,fo-top:oi-discovery-catalog@@icons@@like_202006280402.png,ox-24,oy-617,ow-29:q-80/et00311712-lkvnmxeeev-portrait.jpg",
+      "food": "on",
+      "movies": "on",
+      "id": 3,
+      "subscribed": [1, 5]
     }
   ],
   "meetups": [

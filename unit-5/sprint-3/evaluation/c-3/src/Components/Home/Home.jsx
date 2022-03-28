@@ -1,54 +1,82 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
 import { BookCard } from "../BookCard/BookCard";
 import { SortAndFilterButtons } from "../SortAndFilterButtons/SortAndFilterButtons";
 import styled from "styled-components";
-
+import axios from "axios";
+import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import "./Home.css"
 export const Home = () => {
-  const [books, setBooks] = useState([]);
+  const [data, setData] = useState([]);
   useEffect(() => {
-    axios.get("http://localhost:8080/books").then((res) => {
-      setBooks(res.data);
-      // console.log(res.data)
-    });
+    getData();
   }, []);
-
-  // get all books when user lands on the page
-  // populate them as mentioned below
+  function getData() {
+    axios.get("http://localhost:8080/books").then((res) => {
+      setData(res.data);
+    });
+  }
 
   const Main = styled.div`
-    background: white;
-    display: grid;
-    grid-template-columns: 410px 410px 410px;
-    width: 90;
+    /* Apply some responsive styling to children */
+    display : grid;
+    grid-template-columns : repeat(3, 1fr);
+    grid-gap : 50px;
+   
+
   `;
+
+  function Sort(param){
+    let temp;
+    if(param === "AT"){
+     temp = data.sort((a, b)=>{
+       return  a.title.localeCompare(b.title);
+      })
+    }
+    if(param === "DT"){
+      temp = data.sort((a, b)=>{
+       return  b.title.localeCompare(a.title);
+      })
+    }
+    if(param === "AP"){
+      temp = data.sort((a, b)=>{
+       return  a.price - b.price
+      })
+    }if(param === "DP"){
+     temp =  data.sort((a, b)=>{
+       return  b.price - a.price
+      })
+    }
+    setData([...temp])
+  }
+
+
+
 
   return (
     <div className="homeContainer">
-      <h2 style={{ textAlign: "center" }}>Home</h2>
-
-      <SortAndFilterButtons
+      <h1 style={{ textAlign: "center" }}>Home</h1>
+      <span className="sort">Sort By</span>
+      <SortAndFilterButtons 
         handleSort={
-          "give handleSort function to this component, that sorts books"
+          Sort
         }
       />
 
       <Main className="mainContainer">
-        {/*         
-        
-            Iterate over books that you get from network
-            populate a <BookCard /> component
-            pass down books id, imageUrl, title, price and anything else that you want to 
-            show in books Card. */}
-        {books.map((e) => (
-          <div key={e.id}>
-            <p>Book Id: {e.id}</p>
-            <img src={e.imageUrl} alt="" />
-            <p>Title: {e.title}</p>
-            <p>Price: {e.price}</p>
-            <p>Description {e.description}</p>
+        {data.map((e) => 
+        <div key={e.id}>
+          <Link to={`/bookDetails/${e.id}`} className='text-link'>
+          <BookCard            
+            id={e.id}
+            imageUrl={e.imageUrl}
+            title={e.title}
+            price={e.price}
+            section={e.section}
+          >
+            </BookCard>
+            </Link>
           </div>
-        ))}
+        )}
       </Main>
     </div>
   );

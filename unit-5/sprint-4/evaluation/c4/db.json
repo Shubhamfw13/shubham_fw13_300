@@ -1,36 +1,324 @@
 {
-  "users": [
+  "books": [
     {
-      "name": "Samuel",
-      "password": "secret",
-      "location": "bangalore",
-      "interests": ["technology", "food", "movies", "culture", "art", "drama"],
-      "image": "https://images.unsplash.com/photo",
       "id": 1,
-      "subscribed": [1, 5]
+      "title": "Meet the Deedles",
+      "imageUrl": "http://dummyimage.com/222x100.png/dddddd/000000",
+      "description": "Synergistic executive approach",
+      "reviews": [
+        { "review": "Great" },
+        { "review": "Good" },
+        { "review": "Moderate" },
+        { "review": "Bad" },
+        { "review": "Worst" }
+      ],
+      "author": "Glenn",
+      "price": 1153,
+      "section": "mystery"
     },
     {
-      "name": "shubham",
-      "password": "1234",
-      "location": "delhi",
-      "interests": [],
-      "image": "https://assets-in.bmscdn.com/discovery-catalog/events/tr:w-400,h-600,bg-CCCCCC:w-400.0,h-660.0,cm-pad_resize,bg-000000,fo-top:oi-discovery-catalog@@icons@@like_202006280402.png,ox-24,oy-617,ow-29:q-80/et00311712-lkvnmxeeev-portrait.jpg",
-      "food": "on",
-      "movies": "on",
-      "id": 3,
-      "subscribed": [1, 5]
-    }
-  ],
-  "meetups": [
+      "id": 2,
+      "title": "Death Race 3: Inferno",
+      "imageUrl": "http://dummyimage.com/116x100.png/ff4444/ffffff",
+      "description": "Profound methodical orchestration",
+      "reviews": [
+        { "review": "Great" },
+        { "review": "Good" },
+        { "review": "Moderate" },
+        { "review": "Bad" },
+        { "review": "Worst" }
+      ],
+      "author": "Grant",
+      "price": 1283,
+      "section": "mystery"
+    },
     {
-      "id": 1,
-      "title": "Saunter Strech",
-      "location": "bangalore",
-      "date": "2022-03-25",
-      "time": "23:59",
-      "theme": "technology",
-      "description": "Random Event",
-      "image": "https://images.unsplash.com/photo"
+      "id": 3,
+      "title": "Winter Kills",
+      "imageUrl": "http://dummyimage.com/212x100.png/5fa2dd/ffffff",
+      "description": "Cross-group optimizing intranet",
+      "reviews": [
+        { "review": "Great" },
+        { "review": "Good" },
+        { "review": "Moderate" },
+        { "review": "Bad" },
+        { "review": "Worst" }
+      ],
+      "author": "Nancee",
+      "price": 1251,
+      "section": "mystery"
+    },
+    {
+      "id": 4,
+      "title": "Crime Busters",
+      "imageUrl": "http://dummyimage.com/163x100.png/5fa2dd/ffffff",
+      "description": "Open-architected scalable productivity",
+      "reviews": [
+        { "review": "Great" },
+        { "review": "Good" },
+        { "review": "Moderate" },
+        { "review": "Bad" },
+        { "review": "Worst" }
+      ],
+      "author": "Keely",
+      "price": 1164,
+      "section": "mystery"
+    },
+    {
+      "id": 5,
+      "title": "Illusionist, The (L'illusionniste)",
+      "imageUrl": "http://dummyimage.com/135x100.png/ff4444/ffffff",
+      "description": "Streamlined hybrid time-frame",
+      "reviews": [
+        { "review": "Great" },
+        { "review": "Good" },
+        { "review": "Moderate" },
+        { "review": "Bad" },
+        { "review": "Worst" }
+      ],
+      "author": "Geneva",
+      "price": 1352,
+      "section": "mystery"
+    },
+    {
+      "id": 6,
+      "title": "Hiroshima Mon Amour",
+      "imageUrl": "http://dummyimage.com/203x100.png/5fa2dd/ffffff",
+      "description": "Configurable needs-based secured line",
+      "reviews": [
+        { "review": "Great" },
+        { "review": "Good" },
+        { "review": "Moderate" },
+        { "review": "Bad" },
+        { "review": "Worst" }
+      ],
+      "author": "Annalee",
+      "price": 1380,
+      "section": "technology"
+    },
+    {
+      "id": 7,
+      "title": "The Wedding Ringer",
+      "imageUrl": "http://dummyimage.com/102x100.png/ff4444/ffffff",
+      "description": "Devolved transitional neural-net",
+      "reviews": [
+        { "review": "Great" },
+        { "review": "Good" },
+        { "review": "Moderate" },
+        { "review": "Bad" },
+        { "review": "Worst" }
+      ],
+      "author": "Carroll",
+      "price": 1315,
+      "section": "technology"
+    },
+    {
+      "id": 8,
+      "title": "Edvard Munch",
+      "imageUrl": "http://dummyimage.com/165x100.png/5fa2dd/ffffff",
+      "description": "Innovative background solution",
+      "reviews": [
+        { "review": "Great" },
+        { "review": "Good" },
+        { "review": "Moderate" },
+        { "review": "Bad" },
+        { "review": "Worst" }
+      ],
+      "author": "Galvin",
+      "price": 1491,
+      "section": "technology"
+    },
+    {
+      "id": 9,
+      "title": "Quadrophenia",
+      "imageUrl": "http://dummyimage.com/236x100.png/dddddd/000000",
+      "description": "Customer-focused responsive throughput",
+      "reviews": [
+        { "review": "Great" },
+        { "review": "Good" },
+        { "review": "Moderate" },
+        { "review": "Bad" },
+        { "review": "Worst" }
+      ],
+      "author": "Calida",
+      "price": 1496,
+      "section": "technology"
+    },
+    {
+      "id": 10,
+      "title": "March of the Penguins (Marche de l'empereur, La)",
+      "imageUrl": "http://dummyimage.com/128x100.png/5fa2dd/ffffff",
+      "description": "Adaptive bifurcated complexity",
+      "reviews": [
+        { "review": "Great" },
+        { "review": "Good" },
+        { "review": "Moderate" },
+        { "review": "Bad" },
+        { "review": "Worst" }
+      ],
+      "author": "Gates",
+      "price": 693,
+      "section": "technology"
+    },
+    {
+      "id": 11,
+      "title": "Windows",
+      "imageUrl": "http://dummyimage.com/103x100.png/dddddd/000000",
+      "description": "Quality-focused composite installation",
+      "reviews": [
+        { "review": "Great" },
+        { "review": "Good" },
+        { "review": "Moderate" },
+        { "review": "Bad" },
+        { "review": "Worst" }
+      ],
+      "author": "Marys",
+      "price": 1026,
+      "section": "mythology"
+    },
+    {
+      "id": 12,
+      "title": "Tattoo",
+      "imageUrl": "http://dummyimage.com/106x100.png/dddddd/000000",
+      "description": "Vision-oriented 5th generation monitoring",
+      "reviews": [
+        { "review": "Great" },
+        { "review": "Good" },
+        { "review": "Moderate" },
+        { "review": "Bad" },
+        { "review": "Worst" }
+      ],
+      "author": "Trina",
+      "price": 718,
+      "section": "mythology"
+    },
+    {
+      "id": 13,
+      "title": "Toy, The",
+      "imageUrl": "http://dummyimage.com/225x100.png/5fa2dd/ffffff",
+      "description": "Centralized intangible alliance",
+      "reviews": [
+        { "review": "Great" },
+        { "review": "Good" },
+        { "review": "Moderate" },
+        { "review": "Bad" },
+        { "review": "Worst" }
+      ],
+      "author": "Sigismund",
+      "price": 552,
+      "section": "mythology"
+    },
+    {
+      "id": 14,
+      "title": "Bangkok Dangerous",
+      "imageUrl": "http://dummyimage.com/215x100.png/dddddd/000000",
+      "description": "Organic mobile middleware",
+      "reviews": [
+        { "review": "Great" },
+        { "review": "Good" },
+        { "review": "Moderate" },
+        { "review": "Bad" },
+        { "review": "Worst" }
+      ],
+      "author": "Kissie",
+      "price": 961,
+      "section": "mythology"
+    },
+    {
+      "id": 15,
+      "title": "Castaway",
+      "imageUrl": "http://dummyimage.com/100x100.png/5fa2dd/ffffff",
+      "description": "Horizontal 24/7 projection",
+      "reviews": [
+        { "review": "Great" },
+        { "review": "Good" },
+        { "review": "Moderate" },
+        { "review": "Bad" },
+        { "review": "Worst" }
+      ],
+      "author": "Bartel",
+      "price": 502,
+      "section": "mythology"
+    },
+    {
+      "id": 16,
+      "title": "Valentino: The Last Emperor",
+      "imageUrl": "http://dummyimage.com/178x100.png/5fa2dd/ffffff",
+      "description": "Distributed didactic forecast",
+      "reviews": [
+        { "review": "Great" },
+        { "review": "Good" },
+        { "review": "Moderate" },
+        { "review": "Bad" },
+        { "review": "Worst" }
+      ],
+      "author": "Kaycee",
+      "price": 1303,
+      "section": "history"
+    },
+    {
+      "id": 17,
+      "title": "Mars Needs Moms",
+      "imageUrl": "http://dummyimage.com/111x100.png/ff4444/ffffff",
+      "description": "Grass-roots eco-centric monitoring",
+      "reviews": [
+        { "review": "Great" },
+        { "review": "Good" },
+        { "review": "Moderate" },
+        { "review": "Bad" },
+        { "review": "Worst" }
+      ],
+      "author": "Theresita",
+      "price": 777,
+      "section": "history"
+    },
+    {
+      "id": 18,
+      "title": "Stereo",
+      "imageUrl": "http://dummyimage.com/247x100.png/cc0000/ffffff",
+      "description": "Organic eco-centric conglomeration",
+      "reviews": [
+        { "review": "Great" },
+        { "review": "Good" },
+        { "review": "Moderate" },
+        { "review": "Bad" },
+        { "review": "Worst" }
+      ],
+      "author": "Glen",
+      "price": 1422,
+      "section": "history"
+    },
+    {
+      "id": 19,
+      "title": "John Rabe",
+      "imageUrl": "http://dummyimage.com/188x100.png/ff4444/ffffff",
+      "description": "Ergonomic global matrices",
+      "reviews": [
+        { "review": "Great" },
+        { "review": "Good" },
+        { "review": "Moderate" },
+        { "review": "Bad" },
+        { "review": "Worst" }
+      ],
+      "author": "Catarina",
+      "price": 923,
+      "section": "history"
+    },
+    {
+      "id": 20,
+      "title": "Inherit the Wind",
+      "imageUrl": "http://dummyimage.com/160x100.png/5fa2dd/ffffff",
+      "description": "Re-engineered optimal conglomeration",
+      "reviews": [
+        { "review": "Great" },
+        { "review": "Good" },
+        { "review": "Moderate" },
+        { "review": "Bad" },
+        { "review": "Worst" }
+      ],
+      "author": "Herta",
+      "price": 1377,
+      "section": "history"
     }
   ]
 }

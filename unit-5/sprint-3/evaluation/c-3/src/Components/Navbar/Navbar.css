@@ -1,0 +1,22 @@
+.navbar{
+    display: flex;
+    width: 60%;
+    margin: auto;
+}
+button{
+    text-decoration: none;
+    border: none;    
+    font-size: 25px;
+    width: 150px;
+    height: 35px;
+    cursor: pointer;
+}
+button:hover{
+    color: rgb(175, 175, 175);
+    background-color: black;
+    transition: 0.3s;   
+}
+.home {
+    color: inherit;
+    text-decoration: inherit;
+}

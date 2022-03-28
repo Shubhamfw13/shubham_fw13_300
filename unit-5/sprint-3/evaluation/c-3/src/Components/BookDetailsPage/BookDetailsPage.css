@@ -1,0 +1,11 @@
+.bookContainer{
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-radius: 15px;
+    min-height: 500px;
+    line-height: 25px;
+    width: 30%;
+    padding: 3px;
+    margin: auto;
+    margin-bottom: 20px;      
+    
+}

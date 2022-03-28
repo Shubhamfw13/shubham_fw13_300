@@ -1,0 +1,15 @@
+
+.text-link {
+    color: inherit;
+    text-decoration: inherit;
+}
+.homeContainer{
+    width : 75%;
+    margin : auto;
+}
+.sort{
+    background-color: #efefef;
+    height: 35px;
+    font-size: 25px;
+    padding: 0px 20px;
+}

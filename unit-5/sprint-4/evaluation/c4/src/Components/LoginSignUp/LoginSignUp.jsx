@@ -9,23 +9,25 @@ export const LoginSignUp = () => {
     image: "",
     subscribed: [],
   });
-  const handleChange = (e) => {
+  const handleChangeSignup = (e) => {
     const { className, value } = e.target;
     setFormData({ ...formData, [className]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmitSignup = (e) => {
     e.preventDefault();
     axios.post("http://localhost:8080/users", formData).then((res) => {
       alert("User Created");
     });
   };
+
+  
   return (
     <div className="loginSignUp">
       <form
         className="signUp"
         onSubmit={(e) => {
-          handleSubmit(e);
+          handleSubmitSignup(e);
         }}
       >
         <h1>SignUp</h1>
@@ -34,7 +36,7 @@ export const LoginSignUp = () => {
           type="text"
           className="name"
           onChange={(event) => {
-            handleChange(event);
+            handleChangeSignup(event);
           }}
           required
         />
@@ -44,7 +46,7 @@ export const LoginSignUp = () => {
           type="text"
           className="password"
           onChange={(event) => {
-            handleChange(event);
+            handleChangeSignup(event);
           }}
           required
         />
@@ -53,7 +55,7 @@ export const LoginSignUp = () => {
           value={""}
           className="location"
           onChange={(event) => {
-            handleChange(event);
+            handleChangeSignup(event);
           }}
         >
           <option value=""></option>
@@ -76,7 +78,7 @@ export const LoginSignUp = () => {
           type="checkbox"
           className="food"
           onChange={(event) => {
-            handleChange(event);
+            handleChangeSignup(event);
           }}
         />
         <br />
@@ -85,7 +87,7 @@ export const LoginSignUp = () => {
           type="checkbox"
           className="movies"
           onChange={(event) => {
-            handleChange(event);
+            handleChangeSignup(event);
           }}
         />
         <br />
@@ -94,7 +96,7 @@ export const LoginSignUp = () => {
           type="checkbox"
           className="culture"
           onChange={(event) => {
-            handleChange(event);
+            handleChangeSignup(event);
           }}
         />
         <br />
@@ -103,7 +105,7 @@ export const LoginSignUp = () => {
           type="checkbox"
           className="art"
           onChange={(event) => {
-            handleChange(event);
+            handleChangeSignup(event);
           }}
         />
         <br />
@@ -112,7 +114,7 @@ export const LoginSignUp = () => {
           type="checkbox"
           className="drama"
           onChange={(event) => {
-            handleChange(event);
+            handleChangeSignup(event);
           }}
         />
         <br />
@@ -121,7 +123,7 @@ export const LoginSignUp = () => {
           type="text"
           className="image"
           onChange={(event) => {
-            handleChange(event);
+            handleChangeSignup(event);
           }}
           required
         />

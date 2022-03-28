@@ -1,6 +1,11 @@
 export const SortAndFilterButtons = ({ handleSort }) => {
   return (
     <div className="sortButtons">
+      <button onClick={()=> handleSort('AT')} className="sortByTitleAsc">Asc Title</button>
+      <button onClick={()=> handleSort('DT')} className="sortByTitleDesc">Desc Title</button>
+      <button onClick={()=> handleSort('AP')} className="sortByPriceAsc">Asc Price</button>
+      <button onClick={()=> handleSort('DP')} className="sortByPriceDesc">Desc Price</button>
+
       {/*
         Create 4 sorting buttons here to sort by following criteria:
 

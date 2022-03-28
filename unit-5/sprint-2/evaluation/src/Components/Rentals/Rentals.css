@@ -1,0 +1,14 @@
+.table{
+    border-collapse: collapse;
+    width: 70%;
+    margin: auto;
+    margin-top: 50px;
+    margin-bottom: 20px;
+    color: rgb(7, 28, 46);
+    background-color: bisque;
+}
+img{
+    height: 100px;
+    width: 180px;
+    object-fit: cover;
+}

@@ -1,37 +1,89 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
-import { AddHouse } from "../AddHouse/AddHouse";
 import "./Rentals.css";
-
-export const Rentals = (props) => {
-  <AddHouse getData={getData} />;
-
+import axios from 'axios'
+import { useEffect, useState } from "react";
+export const Rentals = () => {
+  const [data, setData] = useState([]);
+  const [inp, setinp] = useState("");
   useEffect(() => {
-    getData();
-  }, []);
-
-  const [datas, setDatas] = useState([]);
-
-  function getData() {
-    axios
-      .get("http://localhost:8080/houses")
-      .then((res) => [setDatas(res.data)]);
+    getData()
+    SortByRentAsc(data)
+    SortByRentDsc(data)
+    SortById(data)
+    SortByAreaCodeAsc(data)
+    SortByAreaCodeDsc(data)
+    Filter(inp)
+  }, [setData])
+  function getData(){
+    axios.get("http://localhost:8080/houses").then((res) => {
+      setData(res.data)
+    })
   }
+
+  function handleChange(e) {
+    setinp(e.target.value)
+  }
+  
+
+  function Filter(inp) {
+    console.log('Under filter function: ', inp)
+   let temp = data.filter((e)=>{
+     return e.address.startsWith(inp)
+   })
+   setData([...temp])
+   console.log(temp)
+  }
+
+  function SortByAreaCodeAsc(data) {
+    data.sort((a, b) => {
+      return a.areaCode - b.areaCode
+    })
+    setData([...data])
+  }
+  function SortByAreaCodeDsc(data) {
+    data.sort((a, b) => {
+      return b.areaCode - a.areaCode
+    })
+    setData([...data])
+  }
+  function SortById() {
+    data.sort((a, b) => {
+      return a.id - b.id
+    })
+    setData([...data])
+  }
+  // SortByRent(data)
+  function SortByRentAsc(data) {
+    data.sort((a, b) => {
+      return a.rent - b.rent
+    })
+    setData([...data])
+  }
+  function SortByRentDsc(data) {
+    data.sort((a, b) => {
+      return b.rent - a.rent
+    })
+    setData([...data])
+  }
+
+
 
   return (
     <div className="rentalContainer">
       <div className="sortingButtons">
-        <button className="sortById">Sort by ID</button>
-        <button className="sortByRentAsc">Rent Low to high</button>
-        <button className="sortByRentDesc">Rent High to low</button>
-        <button className="sortByAreaAsc">Area Low to high</button>
-        <button className="sortByAreaDesc">Area High to Low</button>
+        <button className="sortById" onClick={() => SortById(data)}>Sort by ID</button>
+        <button className="sortByRentAsc" onClick={() => SortByRentAsc(data)}>Rent Low to high</button>
+        <button className="sortByRentDesc" onClick={() => SortByRentDsc(data)}>Rent High to low</button>
+        <button className="sortByAreaAsc" onClick={() => SortByAreaCodeAsc(data)}>Area Low to high</button>
+        <button className="sortByAreaDesc" onClick={() => SortByAreaCodeDsc(data)}>Area High to Low</button>
       </div>
       <input
         className="searchAddress"
         type="text"
         placeholder="Search Address"
+        onChange={handleChange}
+
       />
+      <button onClick={()=> Filter(inp)}>Find</button> 
       <table className="table" border="1">
         <thead>
           <tr>
@@ -46,7 +98,7 @@ export const Rentals = (props) => {
           </tr>
         </thead>
         <tbody>
-          {datas.map((house, index) => {
+          {data.map((house, index) => {
             return (
               <tr key={house.id} className="houseDetails">
                 <td className="houseId">{house.id}</td>
@@ -55,11 +107,9 @@ export const Rentals = (props) => {
                 <td className="address">{house.address}</td>
                 <td className="areaCode">{house.areaCode}</td>
                 <td className="rent">{house.rent}</td>
-                <td className="preferredTenants">
-                  {/* Show text Both or Bachelors or Married based on values */}
-                </td>
+                <td className="preferredTenants">{house.tenants}</td>
                 <td className="houseImage">
-                  <img src={house.image} alt="house" />
+                  <img src={house.img} alt="house" />
                 </td>
               </tr>
             );

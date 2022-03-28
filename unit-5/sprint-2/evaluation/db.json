@@ -1,53 +1,26 @@
 {
   "houses": [
     {
-      "Name": "sfs",
-      "Owners_name": "sfsf",
-      "Address": "sfsfs",
-      "Area_code": "fsfs",
-      "rent": "fsfsf",
-      "preferred_tenants": "on",
+      "name": "shubham",
+      "ownerName": "shubham",
+      "address": "india",
+      "areaCode": "800009",
+      "rent": "12334",
+      "bachelor": "",
+      "married": "on",
+      "image": "link",
       "id": 1
     },
     {
-      "Name": "sfs",
-      "Owners_name": "fhfhf",
-      "Address": "hfh",
-      "Area_code": "fhf",
-      "rent": "hfh",
-      "preferred_tenants": "on",
+      "name": "satyam ",
+      "ownerName": "satyam",
+      "address": "anisabad",
+      "areaCode": "8888",
+      "rent": "99999",
+      "bachelor": "on",
+      "married": "",
+      "image": "rgfd",
       "id": 2
-    },
-    {
-      "Name": "sfs",
-      "Owners_name": "sfsf",
-      "Address": "sfsfs",
-      "Area_code": "fsfs",
-      "rent": "fsfsf",
-      "preferred_tenants": "on",
-      "id": 3
-    },
-    {
-      "name": "sdsd",
-      "ownerName": "sdsd",
-      "address": "sdsd",
-      "areaCode": "sdsd",
-      "rent": "sdsd",
-      "bachelor": "on",
-      "married": "",
-      "image": "sds",
-      "id": 4
-    },
-    {
-      "name": "shubham",
-      "ownerName": "kunmar",
-      "address": "sdsd",
-      "areaCode": "ad",
-      "rent": "324234",
-      "bachelor": "on",
-      "married": "",
-      "image": "img",
-      "id": 5
     }
   ]
 }

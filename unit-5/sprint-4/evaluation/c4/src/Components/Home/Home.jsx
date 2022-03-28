@@ -29,7 +29,7 @@ export const Home = () => {
             <option value="mumbai">Mumbai</option>
           </select>
         </div>
-        <Link to={`add your route here`}> Add Meetup</Link>
+        <Link to={`/meetup`}> Add Meetup</Link>
         <h1>Subscribed Events</h1>
         <div className="subscribedEvents">
           {/* All user subcribed events should be displayed here in an ascending order of date */}
@@ -37,7 +37,7 @@ export const Home = () => {
           {[]
             .map((el) => {
               return (
-                <Link to={`add route here`} className="events">
+                <Link to={`/events`} className="events">
                   {/* Each event should have these elements/children (divs):
                     ex : title, theme, description, date, time, location, image(optional)
                     the classNames should be also : title, theme, description, date, time, location, image(optional) */}

@@ -1,45 +1,42 @@
-import axios from "axios";
-import { useState } from "react";
-import { ShowStatus } from "./show";
+import { useContext, useState } from "react"
+import { AuthContext } from "../contexts/AuthContext"
 
-export const Login = () => {
-  const [cred, setCred] = useState({ email: "", password: "" });
-  const [content, setContent] = useState();
 
-  const handleChange = (e) => {
-    setCred({ ...cred, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    axios.post("https://reqres.in/api/login", cred).then((res) => {
-      setContent(res.data.token);
-      setCred({ email: "", password: "" });
+export function Login() {
+    const [data, setData] = useState({
+        email: "",
+        password: ""
     });
-    setContent(null);
-  };
+    const[toggle, setToggle] = useState(true);
+    
+    function handleChange(e) {
+        const { id, value } = e.target;
+        setData({ ...data, [id]: value })
+    }
+    const { Login } = useContext(AuthContext)
+    function handleSubmit(e) {
+        e.preventDefault();
+        Login(data)
+        
+        console.log("handleSubmit: " ,toggle)
+        setToggle(true);
 
-  return (
-    <div>
-      <h1>Login</h1>
-      <form onSubmit={handleSubmit}>
-        <input
-          value={cred.email}
-          type="text"
-          name="email"
-          placeholder="Email"
-          onChange={handleChange}
-        />
-        <input
-          type="text"
-          value={cred.password}
-          name="password"
-          placeholder="Password"
-          onChange={handleChange}
-        />
-        <input type="submit" name="" id="" />
-      </form>
-      <ShowStatus content={content} />
-    </div>
-  );
-};
+    }
+    
+    function Toggle(){
+        console.log("Toggle: ",toggle)
+        setToggle(false)
+    }
+    
+
+    return <>
+        <form onSubmit={handleSubmit}>
+            <input onChange={handleChange} id="email" type="text" placeholder="Email" /><br />
+            <input onChange={handleChange} id="password" type="text" placeholder="Password" /><br />
+            <button type="submit">Login</button>
+        </form>
+        <button onClick={()=> Toggle()}>Toggle</button>
+    </>
+}
+
+

@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Navbar from "../Navbar/Navbar";
 import { useSelector, useDispatch } from "react-redux";
 import { GetMenData } from "../../Redux/Products/action";
+import { useNavigate } from "react-router-dom";
 
 const Container = styled.div`
   display: grid;
@@ -36,7 +37,9 @@ const Category = styled.p`
 const MenCategories = () => {
   const { men } = useSelector((state) => state.productData);
   console.log(men);
+  
   const dispatch = useDispatch();
+  const navigate = useNavigate()
 
   useEffect(() => {
     dispatch(GetMenData());
@@ -47,7 +50,7 @@ const MenCategories = () => {
       <Navbar />
       <Container>
         {men.map((e) => (
-          <ItemBox>
+          <ItemBox key={e.id} onClick={()=>{navigate(`/menproductdetails/${e.id}`)}}>
             <ItemImage src={e.image} alt="" />
             <Title>{e.title}</Title>
             <Price>{e.price}</Price>

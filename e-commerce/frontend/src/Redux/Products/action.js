@@ -1,4 +1,4 @@
-import axios, { Axios } from "axios";
+import axios from "axios";
 import * as types from "./types";
 
 const sendDataReq = (payload) => ({type: types.SEND_DATA_REQ});
@@ -52,6 +52,31 @@ const GetWomenData =() =>(dispatch)=>{
     }
 }
 
+const GetMenSingleData = (id) =>(dispatch)=>{
+    dispatch(getMenSingleDataReq("Getting men Single Data"))
+    try{
+      axios.get(`http://localhost:8080/men/${id}`).then((res)=>{
+          dispatch(getMenSingleDataSuccess(res.data))
+      }).catch((err)=>{
+          dispatch(getMenSingleDataFail(err))
+      })
+    }catch(err){
+
+    }
+}
+
+ const GetWomenSingleData = (id) =>(dispatch)=>{
+     dispatch(getWomenSingleDataReq("Getting Women Single Data"))
+     try{
+       axios.get(`http://localhost:8080/women/${id}`).then((res)=>{
+           dispatch(getWomenSingleDataSuccess(res.data))
+       }).catch((err)=>{
+           dispatch(getWomenSingleDataFail(err))
+       })
+     }catch(err){
+
+     }
+ }
 
 
-export {GetMenData,GetWomenData}
+export {GetMenData,GetWomenData,GetWomenSingleData,GetMenSingleData}

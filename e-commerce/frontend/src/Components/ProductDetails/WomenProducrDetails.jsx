@@ -36,6 +36,10 @@ const Title = styled.h1`
   font-weight: 200;
 `;
 
+const Category = styled.h1`
+  font-weight: 200;
+`;
+
 const Desc = styled.p`
   margin: 20px 0px;
 `;
@@ -119,7 +123,6 @@ const Button = styled.button`
 const WomenProductDetails = () => {
 const {womenSingleData} = useSelector((state)=>state.productData)
 let rate = womenSingleData.rating
-console.log(rate)
 const [data,setData] = useState({})
 
 const {id} = useParams()
@@ -137,14 +140,15 @@ const handleAddToCart = ()=>{
 
   return (
     <>
-      <Navbar />
       <Container>
+      <Navbar />
       <Wrapper>
         <ImgContainer>
           <Image src={womenSingleData.image} />
         </ImgContainer>
         <InfoContainer>
-          <Title>Denim Jumpsuit</Title>
+          <Title>{womenSingleData.title}</Title>
+          <Category>Category: {womenSingleData.category}</Category>
           <Desc>
             {womenSingleData.description}
           </Desc>

@@ -1,19 +1,18 @@
 import React, { useEffect, useState } from "react";
-import {Add,Remove} from "@mui/icons-material"
+import { Add, Remove } from "@mui/icons-material";
 import styled from "styled-components";
 import Navbar from "../Navbar/Navbar";
-import {GetMenSingleData,SentToCart} from "../../Redux/Products/action";
+import { GetMenSingleData, SentToCart } from "../../Redux/Products/action";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import Stack from '@mui/material/Stack';
-import {mobile} from "../../Responsive/responsive"
+import { mobile } from "../../Responsive/responsive";
 
 const Container = styled.div``;
 
 const Wrapper = styled.div`
   padding: 50px;
   display: flex;
-  ${mobile({ padding: "10px", flexDirection:"column" })}
+  ${mobile({ padding: "10px", flexDirection: "column" })}
 `;
 
 const ImgContainer = styled.div`
@@ -34,6 +33,10 @@ const InfoContainer = styled.div`
 `;
 
 const Title = styled.h1`
+  font-weight: 200;
+`;
+
+const Category = styled.h1`
   font-weight: 200;
 `;
 
@@ -111,70 +114,68 @@ const Button = styled.button`
   background-color: white;
   cursor: pointer;
   font-weight: 500;
-  &:hover{
-      background-color: #f8f4f4;
+  &:hover {
+    background-color: #f8f4f4;
   }
 `;
 const MenProductDetails = () => {
-const {menSingleData} = useSelector((state)=>state.productData)
-const [ data, setData] = useState({})
-const {id} = useParams()
-const dispatch = useDispatch()
+  const { menSingleData } = useSelector((state) => state.productData);
+  const [data, setData] = useState({});
+  const { id } = useParams();
+  const dispatch = useDispatch();
 
+  useEffect(() => {
+    dispatch(GetMenSingleData(id));
+    setData({ ...menSingleData });
+  }, []);
 
-useEffect(()=>{
-dispatch(GetMenSingleData(id))
-setData({...menSingleData})
-},[])
-
-const handleAddToCart=()=>{
-  console.log(menSingleData,"de")
-  dispatch(SentToCart(menSingleData))
-}
+  const handleAddToCart = () => {
+    console.log(menSingleData, "de");
+    dispatch(SentToCart(menSingleData));
+  };
 
   return (
     <>
-          <Navbar />
       <Container>
-      <Wrapper>
-        <ImgContainer>
-          <Image src={menSingleData.image} />
-        </ImgContainer>
-        <InfoContainer>
-          <Title>Denim Jumpsuit</Title>
-          <Desc>
-            {menSingleData.description}
-          </Desc>
-          <Price>$ {menSingleData.price}</Price>
-          <FilterContainer>
-            <Filter>
-              <FilterTitle>Color</FilterTitle>
-              <FilterColor color="black" />
-              <FilterColor color="darkblue" />
-              <FilterColor color="gray" />
-            </Filter>
-            <Filter>
-              <FilterTitle>Size</FilterTitle>
-              <FilterSize>
-                <FilterSizeOption>XS</FilterSizeOption>
-                <FilterSizeOption>S</FilterSizeOption>
-                <FilterSizeOption>M</FilterSizeOption>
-                <FilterSizeOption>L</FilterSizeOption>
-                <FilterSizeOption>XL</FilterSizeOption>
-              </FilterSize>
-            </Filter>
-          </FilterContainer>
-          <AddContainer>
-            <AmountContainer>
-              <Remove />
-              <Amount>1</Amount>
-              <Add />
-            </AmountContainer>
-            <Button onClick={handleAddToCart} >ADD TO CART</Button>
-          </AddContainer>
-        </InfoContainer>
-      </Wrapper>
-    </Container>
+        <Navbar />
+        <Wrapper>
+          <ImgContainer>
+            <Image src={menSingleData.image} />
+          </ImgContainer>
+          <InfoContainer>
+            <Title>{menSingleData.title}</Title>
+            <Category>Category: {menSingleData.category}</Category>
+            <Desc>{menSingleData.description}</Desc>
+            <Price>$ {menSingleData.price}</Price>
+            <FilterContainer>
+              <Filter>
+                <FilterTitle>Color</FilterTitle>
+                <FilterColor color="black" />
+                <FilterColor color="darkblue" />
+                <FilterColor color="gray" />
+              </Filter>
+              <Filter>
+                <FilterTitle>Size</FilterTitle>
+                <FilterSize>
+                  <FilterSizeOption>XS</FilterSizeOption>
+                  <FilterSizeOption>S</FilterSizeOption>
+                  <FilterSizeOption>M</FilterSizeOption>
+                  <FilterSizeOption>L</FilterSizeOption>
+                  <FilterSizeOption>XL</FilterSizeOption>
+                </FilterSize>
+              </Filter>
+            </FilterContainer>
+            <AddContainer>
+              <AmountContainer>
+                <Remove />
+                <Amount>1</Amount>
+                <Add />
+              </AmountContainer>
+              <Button onClick={handleAddToCart}>ADD TO CART</Button>
+            </AddContainer>
+          </InfoContainer>
+        </Wrapper>
+      </Container>
     </>
   );
 };

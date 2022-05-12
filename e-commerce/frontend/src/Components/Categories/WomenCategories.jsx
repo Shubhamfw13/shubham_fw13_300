@@ -87,7 +87,6 @@ const Category = styled.p`
 `;
 const WomenCategories = () => {
   const { women } = useSelector((state) => state.productData);
-  console.log(women);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -97,16 +96,14 @@ const WomenCategories = () => {
 
   return (
     <>
-      <Navbar />
       <Container>
+        <Navbar />
         <Title>Women</Title>
         <FilterContainer>
           <Filter>
             <FilterText>Filter Products:</FilterText>
             <Select>
-              <Option disabled selected>
-                Color
-              </Option>
+              <Option default>Color</Option>
               <Option>White</Option>
               <Option>Black</Option>
               <Option>Red</Option>
@@ -115,9 +112,7 @@ const WomenCategories = () => {
               <Option>Green</Option>
             </Select>
             <Select>
-              <Option disabled selected>
-                Size
-              </Option>
+              <Option default>Size</Option>
               <Option>XS</Option>
               <Option>S</Option>
               <Option>M</Option>
@@ -128,7 +123,7 @@ const WomenCategories = () => {
           <Filter>
             <FilterText>Sort Products:</FilterText>
             <Select>
-              <Option selected>Sort</Option>
+              <Option default>Sort</Option>
               <Option>Price (asc)</Option>
               <Option>Price (desc)</Option>
             </Select>

@@ -46,11 +46,9 @@ const Cart = () => {
   }, []);
   return (
     <>
-      <Navbar />
-
-      {/* {cart.map((e)=>{ */}
-      {/* //  return <h1>{elem.title}</h1> */}
+    <Navbar />
       <Container>
+        
         <Right>
           {cart.map((e) => (
             <CartBox>
@@ -66,7 +64,6 @@ const Cart = () => {
           <hr />
         </Left>
       </Container>
-      {/* // })} */}
     </>
   );
 };

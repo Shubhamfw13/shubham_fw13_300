@@ -37,9 +37,7 @@ const Select = styled.select`
 `;
 const Option = styled.option``;
 
-const Info = styled.div`
-
-`;
+const Info = styled.div``;
 
 const ItemContainer = styled.div`
   margin-left: 20%;
@@ -90,7 +88,6 @@ const Category = styled.p`
 
 const MenCategories = () => {
   const { men } = useSelector((state) => state.productData);
-  console.log(men);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -101,16 +98,14 @@ const MenCategories = () => {
 
   return (
     <>
-      <Navbar />
       <Container>
+        <Navbar />
         <Title>Men</Title>
         <FilterContainer>
           <Filter>
             <FilterText>Filter Products:</FilterText>
             <Select>
-              <Option disabled selected>
-                Color
-              </Option>
+              <Option default>Color</Option>
               <Option>White</Option>
               <Option>Black</Option>
               <Option>Red</Option>
@@ -119,9 +114,7 @@ const MenCategories = () => {
               <Option>Green</Option>
             </Select>
             <Select>
-              <Option disabled selected>
-                Size
-              </Option>
+              <Option default>Size</Option>
               <Option>XS</Option>
               <Option>S</Option>
               <Option>M</Option>
@@ -132,7 +125,7 @@ const MenCategories = () => {
           <Filter>
             <FilterText>Sort Products:</FilterText>
             <Select>
-              <Option selected>Sort</Option>
+              <Option default>Sort</Option>
               <Option>Price (asc)</Option>
               <Option>Price (desc)</Option>
             </Select>

@@ -1,13 +1,14 @@
 import SearchIcon from "@mui/icons-material/Search";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCartOutlined";
 import { Badge } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { mobile } from "../../Responsive/responsive";
 
 const Container = styled.div`
+  
   height: 60px;
   ${mobile({ height: "50px" })}
 `;
@@ -63,17 +64,15 @@ const Right = styled.div`
   ${mobile({ flex: 2, justifyContent: "center" })}
 `;
 
-const Menu= styled.div`
+const Menu = styled.div`
   font-size: 14px;
   cursor: pointer;
   margin-left: 25px;
   ${mobile({ fontSize: "12px", marginLeft: "10px" })}
 `;
 const Navbar = () => {
-  const navigate = useNavigate()
-  const {cart} = useSelector((state)=> state.productData)
-
-  const [len,setLen] = useState(0)
+  const navigate = useNavigate();
+  const { cart } = useSelector((state) => state.productData);
 
   return (
     <>
@@ -83,18 +82,28 @@ const Navbar = () => {
             <Lang>EN</Lang>
             <SearchContainer>
               <InputBox />
-              <SearchIcon style={{color:"blue",fontSize:15}} />
+              <SearchIcon style={{ color: "blue", fontSize: 15 }} />
             </SearchContainer>
           </Left>
           <Center>
-            <Logo onClick={()=>{navigate("/")}} >E-Commerce</Logo>
+            <Logo
+              onClick={() => {
+                navigate("/");
+              }}
+            >
+              E-Commerce
+            </Logo>
           </Center>
           <Right>
             <Menu>Register</Menu>
             <Menu>Sign-In</Menu>
-            <Menu onClick={()=>{navigate("/cart")}}>
+            <Menu
+              onClick={() => {
+                navigate("/cart");
+              }}
+            >
               <Badge badgeContent={cart.length} color="primary">
-                <ShoppingCartIcon/>
+                <ShoppingCartIcon />
               </Badge>
             </Menu>
           </Right>

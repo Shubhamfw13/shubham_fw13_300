@@ -51,6 +51,7 @@ const Center = styled.div`
 `;
 
 const Logo = styled.h1`
+  cursor: pointer;
   font-weight: bold;
   ${mobile({ fontSize: "24px" })}
 `;
@@ -74,12 +75,6 @@ const Navbar = () => {
 
   const [len,setLen] = useState(0)
 
-//   useEffect(()=>{
-//     setLen(cart.length)
-//   },[len])
-
-//  console.log(len)
-
   return (
     <>
       <Container>
@@ -92,7 +87,7 @@ const Navbar = () => {
             </SearchContainer>
           </Left>
           <Center>
-            <Logo>E-Commerce</Logo>
+            <Logo onClick={()=>{navigate("/")}} >E-Commerce</Logo>
           </Center>
           <Right>
             <Menu>Register</Menu>

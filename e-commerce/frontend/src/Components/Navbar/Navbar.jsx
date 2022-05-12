@@ -1,7 +1,9 @@
 import SearchIcon from "@mui/icons-material/Search";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCartOutlined";
 import { Badge } from "@mui/material";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -56,6 +58,17 @@ const Menu = styled.div`
 `;
 
 const Navbar = () => {
+  const navigate = useNavigate()
+  const {cart} = useSelector((state)=> state.productData)
+
+  const [len,setLen] = useState(0)
+
+//   useEffect(()=>{
+//     setLen(cart.length)
+//   },[len])
+
+//  console.log(len)
+
   return (
     <>
       <Container>
@@ -73,9 +86,9 @@ const Navbar = () => {
           <Right>
             <Menu>Register</Menu>
             <Menu>Sign-In</Menu>
-            <Menu>
-              <Badge badgeContent={2} color="primary" >
-                <ShoppingCartIcon />
+            <Menu onClick={()=>{navigate("/cart")}}>
+              <Badge badgeContent={cart.length} color="primary">
+                <ShoppingCartIcon/>
               </Badge>
             </Menu>
           </Right>

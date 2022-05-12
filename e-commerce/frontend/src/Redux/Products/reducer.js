@@ -7,6 +7,7 @@ const initialState = {
   women: [],
   womenSingleData: [],
   menSingleData: [],
+  cart:[]
 };
 
 export const productReducer = (state = initialState, { type, payload }) => {
@@ -38,6 +39,14 @@ export const productReducer = (state = initialState, { type, payload }) => {
       return { ...state, menSingleData: payload };
     case types.GET_MEN_SINGLE_DATA_FAIL:
       return { ...state, error: payload };
+
+
+      case types.SENT_TO_CART:
+        return {...state, loading:payload}
+
+
+        case types.GET_DATA_FROM_CART:
+          return {...state, cart:payload}
 
     default:
       return state;

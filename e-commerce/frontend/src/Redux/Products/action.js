@@ -21,6 +21,10 @@ const getWomenSingleDataReq = (payload) => ({type:types.GET_WOMEN_SINGLE_DATA_RE
 const getWomenSingleDataSuccess = (payload) => ({type:types.GET_WOMEN_SINGLE_DATA_SUCCESS,payload})
 const getWomenSingleDataFail = (payload) => ({type:types.GET_WOMEN_SINGLE_DATA_FAIL,payload})
 
+const sentTocart = (payload) => ({type:types.SENT_TO_CART,payload})
+
+const getDataFromCart = (payload) => ({type:types.GET_DATA_FROM_CART,payload})
+
 
 
 
@@ -79,4 +83,33 @@ const GetMenSingleData = (id) =>(dispatch)=>{
  }
 
 
-export {GetMenData,GetWomenData,GetWomenSingleData,GetMenSingleData}
+ 
+ const SentToCart = (menSingleData,womenSingleData) =>(dispatch)=>{
+//   console.log(menSingleData,"action")
+    try{
+      axios.post('http://localhost:8080/cart', menSingleData,womenSingleData).then(()=>{
+          dispatch(sentTocart())
+      }).catch((err)=>{
+        console.log(err)
+      })
+    }catch(err){
+console.log(err)
+    }
+}
+
+ 
+const GetDataFromCart = () =>(dispatch)=>{
+    //   console.log(menSingleData,"action")
+        try{
+          axios.get('http://localhost:8080/cart').then((res)=>{
+              dispatch(getDataFromCart(res.data))
+          }).catch((err)=>{
+            console.log(err)
+          })
+        }catch(err){
+    console.log(err)
+        }
+    }
+
+
+export {GetMenData,GetWomenData,GetWomenSingleData,GetMenSingleData, SentToCart,GetDataFromCart}

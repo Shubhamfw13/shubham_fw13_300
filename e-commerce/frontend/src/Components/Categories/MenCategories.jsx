@@ -89,13 +89,8 @@ const Category = styled.p`
 const MenCategories = () => {
   const { men } = useSelector((state) => state.productData);
 
-  const dispatch = useDispatch();
+
   const navigate = useNavigate();
-
-  useEffect(() => {
-    dispatch(GetMenData());
-  }, []);
-
   return (
     <>
       <Container>

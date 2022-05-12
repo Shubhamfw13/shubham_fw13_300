@@ -111,5 +111,20 @@ const GetDataFromCart = () =>(dispatch)=>{
         }
     }
 
+const UpdateCart = (data) => (dispatch )=>{
+   
+    try{
+      axios.patch(`http://localhost:8080/cart/${data.id}`,{
+        data
+      }).then((res)=>{
+          dispatch(getDataFromCart(res.data))
+      }).catch((err)=>{
+        console.log(err)
+      })
+    }catch(err){
+console.log(err)
+    }
+}
+
 
 export {GetMenData,GetWomenData,GetWomenSingleData,GetMenSingleData, SentToCart,GetDataFromCart}

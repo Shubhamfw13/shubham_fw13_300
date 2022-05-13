@@ -2,7 +2,7 @@ import React, { useEffect, useState} from "react";
 import {Add,Remove} from "@mui/icons-material"
 import styled from "styled-components";
 import Navbar from "../Navbar/Navbar";
-import { GetWomenSingleData,SentToCart} from "../../Redux/Products/action";
+import { deleteCart, GetDataFromCart, GetWomenData, GetWomenSingleData,SentToCart, UpdateCart} from "../../Redux/Products/action";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {mobile} from "../../Responsive/responsive"
@@ -121,25 +121,44 @@ const Button = styled.button`
 
 
 const WomenProductDetails = () => {
-const {womenSingleData} = useSelector((state)=>state.productData)
-let rate = womenSingleData.rating
-const [data,setData] = useState({})
+const womans = useSelector((state)=>state.productData.women)
+  const cart = useSelector((state)=>state.productData.cart)
+  const [data, setData] = useState({});
+  const { id } = useParams();
+  const dispatch = useDispatch();
 
-const {id} = useParams()
-const dispatch = useDispatch()
+  const womenSingleData = womans.find((p)=>p.id==id)
+  const isInCart = cart.find((p)=>p.id==id)
 
-useEffect(()=>{
-dispatch(GetWomenSingleData(id))
-setData({...womenSingleData})
-},[])
+  useEffect(() => {
+    dispatch(GetWomenSingleData(id));
+    if(womans.length == 0){
+      dispatch(GetWomenData())
+      dispatch(GetDataFromCart())
+    }
+  }, []);
 
-const handleAddToCart = ()=>{
-  dispatch(SentToCart(womenSingleData))
-}
 
+  const handleButtons = (type)=>{
+    if(type == "+" ){
+      if(isInCart){
+        dispatch(UpdateCart({...womenSingleData, quantity: isInCart.quantity + 1}));
+      } else{
+        dispatch(SentToCart({...womenSingleData, quantity: 1}));
+      }
+    } else if(type == "-"){
+      if(isInCart && isInCart.quantity > 1){
+        dispatch(UpdateCart({...womenSingleData, quantity: isInCart.quantity - 1}));
+      } else {
+        dispatch(deleteCart(id))
+      }
 
+    }
+    dispatch(GetDataFromCart())
+  }
   return (
     <>
+     {womenSingleData &&
       <Container>
       <Navbar />
       <Wrapper>
@@ -172,16 +191,17 @@ const handleAddToCart = ()=>{
             </Filter>
           </FilterContainer>
           <AddContainer>
-            <AmountContainer>
-              <Remove />
-              <Amount>1</Amount>
-              <Add />
-            </AmountContainer>
-            <Button onClick={handleAddToCart} >ADD TO CART</Button>
-          </AddContainer>
+              <AmountContainer>
+                <Remove onClick={()=>handleButtons("-")} />
+                <Amount>{isInCart ? isInCart.quantity : 1}</Amount>
+                <Add onClick={()=>handleButtons("+")} />
+              </AmountContainer>
+              <Button  onClick={()=>!isInCart && handleButtons("+")}>{isInCart ? "Already added" : "ADD TO CART"}</Button>
+            </AddContainer>
         </InfoContainer>
       </Wrapper>
     </Container>
+    }
     </>
   );
 };

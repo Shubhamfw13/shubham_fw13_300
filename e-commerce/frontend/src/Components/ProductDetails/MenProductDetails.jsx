@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Add, Remove } from "@mui/icons-material";
 import styled from "styled-components";
 import Navbar from "../Navbar/Navbar";
-import { GetDataFromCart, GetMenSingleData, SentToCart } from "../../Redux/Products/action";
+import { deleteCart, GetDataFromCart, GetMenData, GetMenSingleData, SentToCart, UpdateCart } from "../../Redux/Products/action";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { mobile } from "../../Responsive/responsive";
@@ -130,29 +130,35 @@ const MenProductDetails = () => {
 
   useEffect(() => {
     dispatch(GetMenSingleData(id));
-    setData({ ...menSingleData });
+    if(mens.length == 0){
+      dispatch(GetMenData())
+      dispatch(GetDataFromCart())
+    }
   }, []);
 
- console.log(mens,"Mens single")
 
-  const handleButtns = (type)=>{
+  const handleButtons = (type)=>{
     if(type == "+" ){
       if(isInCart){
-        dispatch(SentToCart({...menSingleData, quantity: isInCart.quantity + 1}));
+        dispatch(UpdateCart({...menSingleData, quantity: isInCart.quantity + 1}));
       } else{
         dispatch(SentToCart({...menSingleData, quantity: 1}));
       }
     } else if(type == "-"){
-      if(isInCart){
-        dispatch(SentToCart({...menSingleData, quantity: isInCart.quantity - 1}));
+      if(isInCart && isInCart.quantity > 1){
+        dispatch(UpdateCart({...menSingleData, quantity: isInCart.quantity - 1}));
+      } else {
+        dispatch(deleteCart(id))
       }
+
     }
     dispatch(GetDataFromCart())
   }
 
-
   return (
-    <>
+    <>{
+      menSingleData &&
+    
       <Container>
         <Navbar />
         <Wrapper>
@@ -184,15 +190,16 @@ const MenProductDetails = () => {
             </FilterContainer>
             <AddContainer>
               <AmountContainer>
-                <Remove onClick={()=>handleButtns("-")} />
-                <Amount>1</Amount>
-                <Add onClick={()=>handleButtns("+")} />
+                <Remove onClick={()=>handleButtons("-")} />
+                <Amount>{isInCart ? isInCart.quantity : 1}</Amount>
+                <Add onClick={()=>handleButtons("+")} />
               </AmountContainer>
-              <Button onClick={!isInCart && handleButtns("-")}>ADD TO CART</Button>
+              <Button  onClick={()=>!isInCart && handleButtons("+")}>{isInCart ? "Already added" : "ADD TO CART"}</Button>
             </AddContainer>
           </InfoContainer>
         </Wrapper>
-      </Container>
+      </Container> 
+      }
     </>
   );
 };

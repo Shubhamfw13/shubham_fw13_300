@@ -9,7 +9,10 @@ const Container = styled.div`
   
 `;
 export const Home = () => {
-  
+  const dispatch = useDispatch()
+  useEffect(()=>{
+    dispatch(GetDataFromCart())
+   },[])
   return (
     <>
       <Container>

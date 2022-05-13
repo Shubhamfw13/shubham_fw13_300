@@ -86,7 +86,7 @@ const Cart = () => {
   useEffect(() => {
     dispatch(GetDataFromCart());
     
-  }, [deleteItem]);
+  }, []);
   return (
     <>
     <Navbar />

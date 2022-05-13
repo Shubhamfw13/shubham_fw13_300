@@ -57,12 +57,12 @@ const CheckOutButton = styled.button`
 
 export default function Checkout() {
   const navigate = useNavigate();
-  const {cart} = useSelector((state)=>state.productData) 
-  const dispatch = useDispatch()
+  const { cart } = useSelector((state) => state.productData);
+  const dispatch = useDispatch();
 
-  React.useEffect(()=>{
-   dispatch(GetDataFromCart())
-  },[])
+  React.useEffect(() => {
+    dispatch(GetDataFromCart());
+  }, []);
   return (
     <>
       <Container>
@@ -114,15 +114,11 @@ export default function Checkout() {
               </SummaryItem>
               <SummaryItem type="total">
                 <SummaryItemText>Total</SummaryItemText>
-                <SummaryItemPrice>{cart.reduce((a,b)=> a + 5 + b.quantity * b.price,0).toFixed(2)}</SummaryItemPrice>
+                <SummaryItemPrice>
+                  {cart.reduce((a, b) => a + 5 + b.quantity * b.price, 0).toFixed(2)}
+                </SummaryItemPrice>
               </SummaryItem>
-              <CheckOutButton
-                onClick={() => {
-                  navigate(`/checkout`);
-                }}
-              >
-                CHECKOUT NOW
-              </CheckOutButton>
+              <CheckOutButton>MAKE PAYMENT</CheckOutButton>
             </Summary>
           </Right>
         </Wrapper>

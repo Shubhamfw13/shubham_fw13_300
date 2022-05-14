@@ -1,12 +1,6 @@
 import axios from "axios";
 import * as types from "./types";
-
-const sendDataReq = (payload) => ({ type: types.SEND_DATA_REQ });
-const sendDataSuccess = (payload) => ({
-  type: types.SEND_DATA_SUCCESS,
-  payload,
-});
-const sendDataReqFail = (payload) => ({ type: types.SEND_DATA_FAIL, payload });
+import Alert from '@mui/material/Alert';
 
 const getMenDataReq = (payload) => ({ type: types.GET_MEN_DATA_REQ });
 const getMenDataSuccess = (payload) => ({
@@ -58,6 +52,12 @@ const getDataFromCart = (payload) => ({
   type: types.GET_DATA_FROM_CART,
   payload,
 });
+
+const sendPaymentData = (payload) => ({
+  type: types.SEND_PAYMENT_DATA,
+  payload,
+});
+const getPaymentData = (payload) => ({ type: types.GET_PAYMENT_DATA, payload });
 
 const GetMenData = () => (dispatch) => {
   dispatch(getMenDataReq("Getting Men Data"));
@@ -131,6 +131,19 @@ const SentToCart = (menSingleData, womenSingleData) => (dispatch) => {
   }
 };
 
+const SendPaymentData = (formData) => (dispatch) => {
+  try {
+    axios
+      .post("http://localhost:8070/payment",formData).then((res) => {
+        dispatch(sendPaymentData());
+      
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  } catch (err) {}
+};
+
 const GetDataFromCart = () => (dispatch) => {
   //   console.log(menSingleData,"action")
   try {
@@ -188,4 +201,5 @@ export {
   GetDataFromCart,
   UpdateCart,
   deleteCart,
+  SendPaymentData,
 };

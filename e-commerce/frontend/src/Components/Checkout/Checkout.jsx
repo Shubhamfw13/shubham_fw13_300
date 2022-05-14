@@ -5,7 +5,11 @@ import styled from "styled-components";
 import Navbar from "../Navbar/Navbar";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { GetDataFromCart } from "../../Redux/Products/action";
+import { GetDataFromCart, SendPaymentData } from "../../Redux/Products/action";
+import Alert from "@mui/material/Alert";
+
+import Button from "@mui/material/Button";
+import SubmitButton from "./Snackbar";
 
 const Container = styled.div``;
 const Wrapper = styled.div`
@@ -56,13 +60,38 @@ const CheckOutButton = styled.button`
 `;
 
 export default function Checkout() {
-  const navigate = useNavigate();
   const { cart } = useSelector((state) => state.productData);
+  const [formData, setFormData] = React.useState({
+    firstname: "",
+    lastname: "",
+    email: "",
+    phone: "",
+    address: "",
+    card: "",
+    cvv: "",
+    month: "",
+    year: "",
+    cart: "",
+  });
+
+  const navigate = useNavigate();
+
   const dispatch = useDispatch();
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+  console.log(formData);
+
+  const handleSubmit = () => {
+    dispatch(SendPaymentData(formData));
+  };
 
   React.useEffect(() => {
     dispatch(GetDataFromCart());
   }, []);
+
   return (
     <>
       <Container>
@@ -78,31 +107,81 @@ export default function Checkout() {
               noValidate
               autoComplete="off"
             >
-              <TextField label="First Name" variant="outlined" />
-              <TextField label="Last Name" variant="outlined" />
-              <TextField label="E-Mail" variant="outlined" />
-              <TextField label="Phone" type="number" />
               <TextField
+                onChange={handleChange}
+                value={formData.firstname}
+                name="firstname"
+                label="First Name"
+                variant="outlined"
+              />
+              <TextField
+                onChange={handleChange}
+                value={formData.lastname}
+                name="lastname"
+                label="Last Name"
+                variant="outlined"
+              />
+              <TextField
+                onChange={handleChange}
+                value={formData.email}
+                name="email"
+                label="E-Mail"
+                variant="outlined"
+              />
+              <TextField
+                onChange={handleChange}
+                value={formData.phone}
+                name="phone"
+                label="Phone"
+                type="number"
+              />
+              <TextField
+                onChange={handleChange}
+                value={formData.address}
+                name="address"
                 style={{ width: "60%" }}
                 label="Address"
                 variant="standard"
               />
-            </Box>
-
-            <Label>Payment Information</Label>
-            <Box
-              component="form"
-              sx={{
-                "& > :not(style)": { m: 1, width: "25ch" },
-              }}
-              noValidate
-              autoComplete="off"
-            >
-              <TextField label="Card-Number" variant="outlined" />
-              <TextField label="CVV" variant="outlined" />
+              <Label>Payment Information</Label>
+              <TextField
+                onChange={handleChange}
+                value={formData.card}
+                name="card"
+                label="Card-Number"
+                variant="outlined"
+              />
+              <TextField
+                onChange={handleChange}
+                value={formData.cvv}
+                name="cvv"
+                label="CVV"
+                variant="outlined"
+              />
               <br />
-              <TextField label="Month" variant="outlined" />
-              <TextField label="Year" variant="outlined" />
+              <TextField
+                onChange={handleChange}
+                value={formData.month}
+                name="month"
+                label="Month"
+                variant="outlined"
+              />
+              <TextField
+                onChange={handleChange}
+                value={formData.year}
+                name="year"
+                label="Year"
+                variant="outlined"
+              />
+              <Button
+                style={{width:"50%",textAlign:"center"}}
+                onClick={handleSubmit}
+                variant="contained"
+                color="primary"
+              >
+                SUBMIT DETAILS
+                <SubmitButton></SubmitButton>
+              </Button>
             </Box>
           </Left>
           <Right>
@@ -115,10 +194,18 @@ export default function Checkout() {
               <SummaryItem type="total">
                 <SummaryItemText>Total</SummaryItemText>
                 <SummaryItemPrice>
-                  {cart.reduce((a, b) => a + 5 + b.quantity * b.price, 0).toFixed(2)}
+                  {cart
+                    .reduce((a, b) => a + 5 + b.quantity * b.price, 0)
+                    .toFixed(2)}
                 </SummaryItemPrice>
               </SummaryItem>
-              <CheckOutButton>MAKE PAYMENT</CheckOutButton>
+              <CheckOutButton
+                onClick={() => {
+                  navigate("/orderplaced");
+                }}
+              >
+                MAKE PAYMENT
+              </CheckOutButton>
             </Summary>
           </Right>
         </Wrapper>

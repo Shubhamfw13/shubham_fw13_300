@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import Navbar from "../Navbar/Navbar";
-import { GetWomenData } from "../../Redux/Products/action";
+import { GetDataFromCart, GetWomenData } from "../../Redux/Products/action";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { mobile } from "../../Responsive/responsive";
@@ -92,6 +92,7 @@ const WomenCategories = () => {
 
   useEffect(() => {
     dispatch(GetWomenData());
+    dispatch(GetDataFromCart())
   }, []);
 
   return (

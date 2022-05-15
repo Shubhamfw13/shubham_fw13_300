@@ -3,13 +3,16 @@ const app = express();
 const connect = require("./src/config/db");
 const userController = require("./src/controllers/userController")
 const authController = require("./src/controllers/authController")
+const productsController = require("./src/controllers/productController")
+
 app.use(express.json());
 
 
 
 
 app.use("/users",userController)
-app.use("/users",authController)
+app.use("/auth",authController)
+app.use("/products",productsController)
 
 const port = process.env.PORT || 8000;
 const start = async () => {

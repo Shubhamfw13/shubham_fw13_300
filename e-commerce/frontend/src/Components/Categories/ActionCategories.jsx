@@ -2,11 +2,22 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 import Navbar from "../Navbar/Navbar";
 import { useSelector, useDispatch } from "react-redux";
-import { GetDataFromCart, GetMenData } from "../../Redux/Products/action";
+import { GetActionData, GetDataFromCart } from "../../Redux/Products/action";
 import { useNavigate } from "react-router-dom";
 import { mobile } from "../../Responsive/responsive";
 
-const Container = styled.div``;
+const Container = styled.div`
+background-color: #0a1d32;
+color: white;
+background: linear-gradient(
+      rgba(1, 0, 0, 0.822),
+      rgba(255, 255, 255, 0.244)
+    ),
+    url("https://images.hdqwalls.com/wallpapers/video-games-collage-wide.jpg")
+      center;
+height: 1100px;
+border: 5px solid #0a1d32;
+`;
 
 const Title = styled.h1`
   margin: 20px;
@@ -86,21 +97,21 @@ const Category = styled.p`
   /* display: block; */
 `;
 
-const MenCategories = () => {
-  const { men } = useSelector((state) => state.productData);
+const ActionCategories = () => {
+  const { Action } = useSelector((state) => state.productData);
 
   const dispatch = useDispatch()
 
   const navigate = useNavigate();
   useEffect(()=> {
     dispatch(GetDataFromCart())
-    dispatch(GetMenData())
+    dispatch(GetActionData())
   },[])
   return (
     <>
       <Container>
         <Navbar />
-        <Title>Men</Title>
+        <Title>ACTION</Title>
         <FilterContainer>
           <Filter>
             <FilterText>Filter Products:</FilterText>
@@ -131,28 +142,29 @@ const MenCategories = () => {
             </Select>
           </Filter>
         </FilterContainer>
-      </Container>
-      <ItemContainer>
-        {men.map((e) => (
+        <ItemContainer>
+        {Action.map((e) => (
           <Item
-            key={e.id}
+            key={e._id}
             onClick={() => {
-              navigate(`/menproductdetails/${e.id}`);
+              navigate(`/productdetails/${e._id}`);
             }}
           >
             <Image src={e.image} />
             <Info>
               <ProductTitle>Title: {e.title}</ProductTitle>
-              <Category>Category: {e.category}</Category>
+              <Category>Category: {e.categories}</Category>
               <Price>Price: {e.price}</Price>
-              <Rating>Rating: {e.rating.rate}</Rating>
+              <Rating>Rating: {e.rating}</Rating>
             </Info>
           </Item>
         ))}
       </ItemContainer>
+      </Container>
+     
       ;
     </>
   );
 };
 
-export default MenCategories;
+export default ActionCategories;

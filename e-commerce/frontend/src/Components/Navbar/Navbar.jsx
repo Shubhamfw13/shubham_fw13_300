@@ -8,8 +8,15 @@ import styled from "styled-components";
 import { mobile } from "../../Responsive/responsive";
 
 const Container = styled.div`
-  
-  height: 60px;
+  background: linear-gradient(
+      rgba(12, 1, 1, 0.5),
+      rgba(9, 0, 0, 0)
+    ),
+    url("https://images.hdqwalls.com/wallpapers/video-games-collage-wide.jpg")
+      center;
+  height: 110px;
+  font-family: 'Aldrich', sans-serif;
+  color:white;
   ${mobile({ height: "50px" })}
 `;
 
@@ -65,7 +72,7 @@ const Right = styled.div`
 `;
 
 const Menu = styled.div`
-  font-size: 14px;
+  font-size: 25px;
   cursor: pointer;
   margin-left: 25px;
   ${mobile({ fontSize: "12px", marginLeft: "10px" })}
@@ -95,8 +102,18 @@ const Navbar = () => {
             </Logo>
           </Center>
           <Right>
-            <Menu>Register</Menu>
-            <Menu>Sign-In</Menu>
+            <Menu
+              onClick={() => {
+                navigate("/register");
+              }}
+            >
+              Register
+            </Menu>
+            <Menu
+            onClick={() => {
+              navigate("/login");
+            }}
+            >Sign-In</Menu>
             <Menu
               onClick={() => {
                 navigate("/cart");

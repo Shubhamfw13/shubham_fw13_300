@@ -3,22 +3,65 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const Container = styled.div`
-  width: 60%;
+  width: 100%;
+  height: 1100px;
   padding: 10px 20px;
-  margin-top: 50px;
+  /* margin-top: 50px; */
   justify-content: space-between;
-  display: flex;
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: 800px 800px;
+  background: linear-gradient(
+      rgba(1, 0, 0, 0.822),
+      rgba(255, 255, 255, 0.244)
+    ),
+    url("https://images.hdqwalls.com/wallpapers/video-games-collage-wide.jpg")
+      center;
+  background-size: cover;
+  align-items: center;
+  justify-content: center;
 `;
-const Category = styled.div`
+const Action = styled.div`
+text-align: center;
   height: 500px;
   padding: 10px 20px;
   transform: translateY(5px);
+  background: linear-gradient(
+      rgba(1, 0, 0, 0.066),
+      #ffffff21
+    ),
+    url("https://c4.wallpaperflare.com/wallpaper/96/92/869/game-games-2014-best-wallpaper-preview.jpg")
+      center;
   &:hover {
     background-color: #e9f5f5;
     border-radius: 10px;
     transform: scale(1);
     transition: all 0.1s ease;
-    color: #0a688b;
+    color: #f0f0f0;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px,
+      rgb(209, 213, 219) 0px 0px 0px 1px inset;
+  }
+  box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px,
+    rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
+  flex: 1;
+`;
+const Rpg = styled.div`
+ text-align: center;
+  height: 500px;
+  padding: 10px 20px;
+  transform: translateY(5px);
+  background: linear-gradient(
+      rgba(255, 255, 255, 0.066),
+      #0401082b
+    ),
+    url("https://thegeek.games/wp-content/uploads/2021/05/the-geek-Blizzard-1.jpg")
+      center;
+  &:hover {
+    background-color: #e9f5f5;
+    border-radius: 10px;
+    transform: scale(1);
+    transition: all 0.1s ease;
+    color: #f0f0f0;
     box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px,
       rgb(209, 213, 219) 0px 0px 0px 1px inset;
   }
@@ -34,29 +77,32 @@ const Poster = styled.img`
     transition: all 0.1s ease;
   }
 `;
-const Categ = styled.h1``;
+const Categ = styled.h1`
+font-family: 'Carter One', cursive;
+color: white;
+`;
 
 export const Categories = () => {
   const navigate = useNavigate();
 
   return (
     <Container>
-      <Category
+      <Action
         onClick={() => {
-          navigate("/mencategories");
+          navigate("/actioncategories");
         }}
       >
-        <Poster src="https://media.gq-magazine.co.uk/photos/5d139b4e2881ccd4040a86d5/1:1/w_1170,h_1170,c_limit/tom-hardy-legend-GQ-01May15_pr_b.jpg" />
-        <Categ>Men</Categ>
-      </Category>
-      <Category
+        {/* <Poster src="" /> */}
+        <Categ>ACTION</Categ>
+      </Action>
+      <Rpg
         onClick={() => {
-          navigate("/womencategories");
+          navigate("/rpgcategories");
         }}
       >
-        <Poster src="https://i2-prod.birminghammail.co.uk/incoming/article11389750.ece/ALTERNATES/s1200b/JS91109879.jpg" />
-        <Categ>Women</Categ>
-      </Category>
+        {/* <Poster src="https://thegeek.games/wp-content/uploads/2021/05/the-geek-Blizzard-1.jpg" /> */}
+        <Categ>RPG</Categ>
+      </Rpg>
     </Container>
   );
 };

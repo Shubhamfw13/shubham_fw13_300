@@ -1,12 +1,23 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import Navbar from "../Navbar/Navbar";
-import { GetDataFromCart, GetWomenData } from "../../Redux/Products/action";
+import { GetDataFromCart, GetRpgData} from "../../Redux/Products/action";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { mobile } from "../../Responsive/responsive";
 
-const Container = styled.div``;
+const Container = styled.div`
+  background-color: #0a1d32;
+  color: white;
+  background: linear-gradient(
+      rgba(1, 0, 0, 0.822),
+      rgba(255, 255, 255, 0.244)
+    ),
+    url("https://images.hdqwalls.com/wallpapers/video-games-collage-wide.jpg")
+      center;
+  height: 1100px;
+  border: 5px solid #0a1d32;
+`;
 
 const Title = styled.h1`
   margin: 20px;
@@ -85,21 +96,21 @@ const Rating = styled.p`
 const Category = styled.p`
   /* display: block; */
 `;
-const WomenCategories = () => {
-  const { women } = useSelector((state) => state.productData);
+const RpgCategories = () => {
+  const { RPG } = useSelector((state) => state.productData);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {
-    dispatch(GetWomenData());
-    dispatch(GetDataFromCart())
+    dispatch(GetRpgData());
+    dispatch(GetDataFromCart());
   }, []);
 
   return (
     <>
       <Container>
         <Navbar />
-        <Title>Women</Title>
+        <Title>RPG</Title>
         <FilterContainer>
           <Filter>
             <FilterText>Filter Products:</FilterText>
@@ -130,27 +141,27 @@ const WomenCategories = () => {
             </Select>
           </Filter>
         </FilterContainer>
+        <ItemContainer>
+          {RPG.map((e) => (
+            <Item
+              key={e._id}
+              onClick={() => {
+                navigate(`/productdetails/${e._id}`);
+              }}
+            >
+              <Image src={e.image} />
+              <Info>
+                <ProductTitle>Title: {e.title}</ProductTitle>
+                <Category>Category: {e.categories}</Category>
+                <Price>Price: {e.price}</Price>
+                <Rating>Rating: {e.rating}</Rating>
+              </Info>
+            </Item>
+          ))}
+        </ItemContainer>
       </Container>
-      <ItemContainer>
-        {women.map((e) => (
-          <Item
-            key={e.id}
-            onClick={() => {
-              navigate(`/womenproductdetails/${e.id}`);
-            }}
-          >
-            <Image src={e.image} />
-            <Info>
-              <ProductTitle>Title: {e.title}</ProductTitle>
-              <Category>Category: {e.category}</Category>
-              <Price>Price: {e.price}</Price>
-              <Rating>Rating: {e.rating.rate}</Rating>
-            </Info>
-          </Item>
-        ))}
-      </ItemContainer>
     </>
   );
 };
 
-export default WomenCategories;
+export default RpgCategories;

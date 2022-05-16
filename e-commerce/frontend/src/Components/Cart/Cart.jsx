@@ -91,6 +91,8 @@ const Cart = () => {
       <Navbar />
       <ParentContainer>
         <Right>
+        <CssBaseline />
+        <Container>
           {cart.map((e) => (
             <Paper
               key={e.id}
@@ -143,6 +145,7 @@ const Cart = () => {
               </Grid>
             </Paper>
           ))}
+          </Container>
         </Right>
         <Left> 
         <CssBaseline />

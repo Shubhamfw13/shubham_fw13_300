@@ -2,21 +2,19 @@ import SearchIcon from "@mui/icons-material/Search";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCartOutlined";
 import { Badge } from "@mui/material";
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { Logout } from "../../Redux/Auth/AuthAction";
 import { mobile } from "../../Responsive/responsive";
 
 const Container = styled.div`
-  background: linear-gradient(
-      rgba(12, 1, 1, 0.5),
-      rgba(9, 0, 0, 0)
-    ),
+  background: linear-gradient(rgba(12, 1, 1, 0.5), rgba(9, 0, 0, 0)),
     url("https://images.hdqwalls.com/wallpapers/video-games-collage-wide.jpg")
       center;
   height: 110px;
-  font-family: 'Aldrich', sans-serif;
-  color:white;
+  font-family: "Aldrich", sans-serif;
+  color: white;
   ${mobile({ height: "50px" })}
 `;
 
@@ -80,6 +78,12 @@ const Menu = styled.div`
 const Navbar = () => {
   const navigate = useNavigate();
   const { cart } = useSelector((state) => state.productData);
+  const {user,accessToken} = useSelector((state)=> state.auth)
+  const dispatch = useDispatch()
+
+  const handleLogout = () =>{
+    dispatch(Logout())
+  }
 
   return (
     <>
@@ -110,10 +114,18 @@ const Navbar = () => {
               Register
             </Menu>
             <Menu
-            onClick={() => {
-              navigate("/login");
-            }}
-            >Sign-In</Menu>
+              onClick={() => {
+                navigate("/login");
+              }}
+            >
+              Sign-In
+            </Menu>
+            <Menu
+              onClick={handleLogout}
+            >
+              Logout
+            </Menu>
+
             <Menu
               onClick={() => {
                 navigate("/cart");

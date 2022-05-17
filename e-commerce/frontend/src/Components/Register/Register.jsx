@@ -1,14 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { RegisterData } from "../../Redux/Auth/AuthAction";
 import { mobile } from "../../Responsive/responsive";
 
 const Container = styled.div`
   width: 100vw;
   height: 100vh;
-  background: linear-gradient(
-      rgba(1, 0, 0, 0.822),
-      rgba(255, 255, 255, 0.244)
-    ),
+  background: linear-gradient(rgba(1, 0, 0, 0.822), rgba(255, 255, 255, 0.244)),
     url("https://images.hdqwalls.com/wallpapers/video-games-collage-wide.jpg")
       center;
   background-size: cover;
@@ -18,10 +18,7 @@ const Container = styled.div`
 `;
 
 const Wrapper = styled.div`
- background: linear-gradient(
-      rgba(1, 0, 0, 0.822),
-      rgba(255, 255, 255, 0.244)
-    ),
+  background: linear-gradient(rgba(1, 0, 0, 0.822), rgba(255, 255, 255, 0.244)),
     url("https://images.hdqwalls.com/wallpapers/video-games-collage-wide.jpg")
       center;
   width: 40%;
@@ -63,22 +60,48 @@ const Button = styled.button`
 `;
 
 const Register = () => {
+  const { loading, error, register } = useSelector((state) => state.auth);
+  const navigate = useNavigate();
+  const [value, setValue] = useState({
+    username: "",
+    email: "",
+    password: "",
+  });
+
+  const { username, email, password } = value;
+
+  const dispatch = useDispatch();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(RegisterData(value.username, value.email, value.password));
+  };
+
   return (
     <Container>
       <Wrapper>
         <Title>CREATE AN ACCOUNT</Title>
         <Form>
-          <Input placeholder="name" />
-          <Input placeholder="last name" />
-          <Input placeholder="username" />
-          <Input placeholder="email" />
-          <Input placeholder="password" />
-          <Input placeholder="confirm password" />
+          <Input
+            value={username}
+            onChange={(e) => setValue({ ...value, username: e.target.value })}
+            placeholder="username"
+          />
+          <Input
+            value={email}
+            onChange={(e) => setValue({ ...value, email: e.target.value })}
+            placeholder="email"
+          />
+          <Input
+            value={password}
+            onChange={(e) => setValue({ ...value, password: e.target.value })}
+            placeholder="password"
+          />
           <Agreement>
             By creating an account, I consent to the processing of my personal
             data in accordance with the <b>PRIVACY POLICY</b>
           </Agreement>
-          <Button>CREATE</Button>
+          <Button onClick={handleSubmit}>CREATE</Button>
         </Form>
       </Wrapper>
     </Container>

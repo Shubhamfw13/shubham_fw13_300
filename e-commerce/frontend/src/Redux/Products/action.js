@@ -35,6 +35,7 @@ const getRpgDataFail = (payload) => ({
 });
 
 
+
 const sentTocart = (payload) => ({ type: types.SENT_TO_CART, payload });
 
 const getDataFromCart = (payload) => ({
@@ -48,7 +49,12 @@ const sendPaymentData = (payload) => ({
 });
 const getPaymentData = (payload) => ({ type: types.GET_PAYMENT_DATA, payload });
 
-const GetActionData = () => (dispatch) => {
+const LoginData = () =>(dispatch)=>{
+
+}
+
+
+const GetActionData = () =>  (dispatch) => {
   dispatch(getActionDataReq("Getting Action Data"));
   try {
     axios
@@ -90,7 +96,6 @@ const GetSingleData = (id) => (dispatch) => {
       });
   } catch (err) {}
 };
-
 
 const SentToCart = (menSingleData, womenSingleData) => (dispatch) => {
   //   console.log(menSingleData,"action")

@@ -32,6 +32,8 @@ export const productReducer = (state = initialState, { type, payload }) => {
     case types.GET_SINGLE_DATA_FAIL:
       return { ...state, error: payload };
 
+    case types.LOGIN_REQ:
+      return {...state,}
 
       case types.SENT_TO_CART:
         return {...state, loading:payload}

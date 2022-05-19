@@ -4,6 +4,7 @@ const connect = require("./src/config/db");
 const userController = require("./src/controllers/userController");
 const authController = require("./src/controllers/authController");
 const productsController = require("./src/controllers/productController");
+const cartController = require("./src/controllers/cartController")
 const cors = require("cors");
 app.use(cors({ origin: "*" }));
 
@@ -11,6 +12,7 @@ app.use(express.json());
 
 app.use("/users", userController);
 app.use("/auth", authController);
+app.use("/cart", cartController);
 app.use("/products", productsController);
 
 const port = process.env.PORT || 8000;

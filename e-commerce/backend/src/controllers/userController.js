@@ -14,7 +14,7 @@ router.patch("/:id", authorisation, async (req, res) => {
       req.body.password,
       process.env.SECRET
     ).toString();
-  }
+  } 
   try {
     const update = await User.findByIdAndUpdate(
       req.params.id,

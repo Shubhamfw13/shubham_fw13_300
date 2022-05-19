@@ -1,11 +1,22 @@
-const { type } = require("express/lib/response");
 const mongoose = require("mongoose");
 
 const cartSchema = new mongoose.Schema(
   {
-    userId: { type: String, require: true },
+    user_id: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      require: true,
+    },
     products: [
-      { productId: { type: String }, quantity: { type: Number, default: 1 } },
+      {
+        product_id: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "Product",
+          required: true,
+        },
+        quantity: { type: Number, required: true },
+        price: { type: Number, required: true },
+      },
     ],
   },
   {
@@ -15,3 +26,7 @@ const cartSchema = new mongoose.Schema(
 );
 
 module.exports = mongoose.model("Cart", cartSchema);
+
+// products: [
+//   { productId: { type: mongoose.Schema.Types.ObjectId, ref: "Product", }, quantity: { type: Number, default: 1 } },
+// ],

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useReducer } from "react";
 import { Add, Remove } from "@mui/icons-material";
 import styled from "styled-components";
 import Navbar from "../Navbar/Navbar";
@@ -172,6 +172,9 @@ const ProductDetails = () => {
   const { singledata } = useSelector((state) => state.productData);
   const { user, accessToken } = useSelector((state) => state.auth);
 
+
+
+
   const navigate = useNavigate();
 
   //   const cart = useSelector((state)=>state.productData.cart)
@@ -184,7 +187,6 @@ const ProductDetails = () => {
 
   useEffect(() => {
     dispatch(GetSingleData(id));
-    dispatch(GetDataFromCart());
     //   dispatch(GetDataFromCart())
   }, []);
 
@@ -212,6 +214,7 @@ const ProductDetails = () => {
     // }
 
     dispatch(SentToCart(user._id, singledata._id, singledata.price));
+   dispatch(GetDataFromCart(user._id))
   };
 
   return (

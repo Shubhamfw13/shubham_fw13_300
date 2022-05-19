@@ -21,7 +21,6 @@ const ParentContainer = styledcomp.div`
   height: 800px;
   margin: auto;
   margin-top: 50px;
-
   background-color: aliceblue;
 `;
 const Right = styledcomp.div`

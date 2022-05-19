@@ -11,6 +11,7 @@ const verify = (req, res, next) => {
       req.user = user;
       next();
     });
+    console.log(token)
   } else {
     return res.status(401).send("Authentication Failed");
   }

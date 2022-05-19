@@ -96,7 +96,7 @@ const SentToCart = (user_id, product_id, product_price) => (dispatch) => {
   //   console.log(menSingleData,"action")
   try {
     axios
-      .post(`http://localhost:8000/cart/:${user_id}`, {
+      .post(`http://localhost:8000/cart/${user_id}`, {
         user_id,
         product_id,
         product_price,
@@ -104,6 +104,7 @@ const SentToCart = (user_id, product_id, product_price) => (dispatch) => {
       .then(() => {
         alert("added to cart")
         dispatch(sentTocart());
+        dispatch(GetDataFromCart(user_id))
       })
       .catch((err) => {
         console.log(err);

@@ -2,17 +2,21 @@ import Navbar from "../Navbar/Navbar";
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import { Categories } from "../Categories/Categories";
-import { useDispatch } from "react-redux";
-import { GetDataFromCart } from "../../Redux/Products/action";
+
+
 const Container = styled.div`
-  align-items: center;
-  
-`;
+  background: linear-gradient(
+      rgba(1, 0, 0, 0.822),
+      rgba(255, 255, 255, 0.244)
+    ),
+    url("https://images.hdqwalls.com/wallpapers/video-games-collage-wide.jpg")
+      center;
+      height: 1100px;
+`
 export const Home = () => {
-  const dispatch = useDispatch()
-  useEffect(()=>{
-    dispatch(GetDataFromCart())
-   },[])
+ 
+
+
   return (
     <>
       <Container>

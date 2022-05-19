@@ -34,8 +34,6 @@ const getRpgDataFail = (payload) => ({
   payload,
 });
 
-
-
 const sentTocart = (payload) => ({ type: types.SENT_TO_CART, payload });
 
 const getDataFromCart = (payload) => ({
@@ -49,12 +47,9 @@ const sendPaymentData = (payload) => ({
 });
 const getPaymentData = (payload) => ({ type: types.GET_PAYMENT_DATA, payload });
 
-const LoginData = () =>(dispatch)=>{
+const LoginData = () => (dispatch) => {};
 
-}
-
-
-const GetActionData = () =>  (dispatch) => {
+const GetActionData = () => (dispatch) => {
   dispatch(getActionDataReq("Getting Action Data"));
   try {
     axios
@@ -97,12 +92,17 @@ const GetSingleData = (id) => (dispatch) => {
   } catch (err) {}
 };
 
-const SentToCart = (menSingleData, womenSingleData) => (dispatch) => {
+const SentToCart = (user_id, product_id, product_price) => (dispatch) => {
   //   console.log(menSingleData,"action")
   try {
     axios
-      .post("http://localhost:8070/cart", menSingleData, womenSingleData)
+      .post(`http://localhost:8000/cart/:${user_id}`, {
+        user_id,
+        product_id,
+        product_price,
+      })
       .then(() => {
+        alert("added to cart")
         dispatch(sentTocart());
       })
       .catch((err) => {
@@ -126,11 +126,11 @@ const SendPaymentData = (formData) => (dispatch) => {
   } catch (err) {}
 };
 
-const GetDataFromCart = () => (dispatch) => {
+const GetDataFromCart = (user_id) => (dispatch) => {
   //   console.log(menSingleData,"action")
   try {
     axios
-      .get("http://localhost:8070/cart")
+      .get(`http://localhost:8000/cart/${user_id}`)
       .then((res) => {
         dispatch(getDataFromCart(res.data));
       })

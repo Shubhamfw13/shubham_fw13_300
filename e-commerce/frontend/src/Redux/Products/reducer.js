@@ -6,7 +6,8 @@ const initialState = {
   Action: [],
   RPG: [],
   singledata: [],
-  cart:[]
+  cart: {},
+  items:{}
 };
 
 export const productReducer = (state = initialState, { type, payload }) => {
@@ -33,14 +34,13 @@ export const productReducer = (state = initialState, { type, payload }) => {
       return { ...state, error: payload };
 
     case types.LOGIN_REQ:
-      return {...state,}
+      return { ...state };
 
-      case types.SENT_TO_CART:
-        return {...state, loading:payload}
+    case types.SENT_TO_CART:
+      return { ...state, loading: payload };
 
-
-        case types.GET_DATA_FROM_CART:
-          return {...state, cart:payload}
+    case types.GET_DATA_FROM_CART:
+      return { ...state, cart: payload,items:payload.products };
 
     default:
       return state;

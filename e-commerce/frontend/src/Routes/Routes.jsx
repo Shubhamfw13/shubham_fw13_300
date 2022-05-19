@@ -16,7 +16,7 @@ import WomenProductDetails from "../Components/ProductDetails/WomenProducrDetail
 import Register from "../Components/Register/Register";
 
 const AllRoutes = () => {
-  
+
   return (
     <>
       <Routes>
@@ -25,12 +25,12 @@ const AllRoutes = () => {
         <Route path="/rpgcategories" element={<RpgCategories />} />
         {/* <Route path="/menproductdetails/:id" element={<MenProductDetails/>} />
         <Route path="/womenproductdetails/:id" element={<WomenProductDetails/>} /> */}
-        <Route path="/productdetails/:id" element={<ProductDetails/>} />
-        <Route path="/cart" element= {<Cart/>}/>
-        <Route path="/checkout" element = {<Checkout/>}/>
-        <Route path="orderplaced" element = {<Orderplaced/>}/>
-        <Route path="register" element = {<Register/>}/>
-        <Route path="login" element = {<Login/>}/>
+        <Route path="/productdetails/:id" element={<ProductDetails />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/checkout" element={<Checkout />} />
+        <Route path="/orderplaced" element={<Orderplaced />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </>
   );

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import Navbar from "../Navbar/Navbar";
-import { GetDataFromCart, GetRpgData} from "../../Redux/Products/action";
+import { GetDataFromCart, GetRpgData } from "../../Redux/Products/action";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { mobile } from "../../Responsive/responsive";
@@ -9,13 +9,10 @@ import { mobile } from "../../Responsive/responsive";
 const Container = styled.div`
   background-color: #0a1d32;
   color: white;
-  background: linear-gradient(
-      rgba(1, 0, 0, 0.822),
-      rgba(255, 255, 255, 0.244)
-    ),
+  background: linear-gradient(rgba(1, 0, 0, 0.822), rgba(255, 255, 255, 0.244)),
     url("https://images.hdqwalls.com/wallpapers/video-games-collage-wide.jpg")
       center;
-  height: 1100px;
+  height: auto;
   border: 5px solid #0a1d32;
 `;
 
@@ -66,9 +63,16 @@ const Item = styled.div`
     background-color: #e9f5f5;
     transform: scale(1);
     transition: all 0.1s ease;
-    color: #0a688b;
+    color: #ebebeb;
   }
-  background-color: #0a688b;
+  background: linear-gradient(rgba(16, 12, 12, 0.822), rgba(0, 0, 0, 0.244)),
+    url("https://c4.wallpaperflare.com/wallpaper/806/992/905/digital-digital-art-artwork-cube-lights-hd-wallpaper-preview.jpg")
+      center;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 700;
+
+  font-family: system-ui;
   border-radius: 10px;
   color: #e9f5f5;
   margin-top: 40px;
@@ -96,6 +100,7 @@ const Rating = styled.p`
 const Category = styled.p`
   /* display: block; */
 `;
+
 const RpgCategories = () => {
   const { RPG } = useSelector((state) => state.productData);
   const dispatch = useDispatch();

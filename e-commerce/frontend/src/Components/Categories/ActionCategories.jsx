@@ -7,16 +7,13 @@ import { useNavigate } from "react-router-dom";
 import { mobile } from "../../Responsive/responsive";
 
 const Container = styled.div`
-background-color: #0a1d32;
-color: white;
-background: linear-gradient(
-      rgba(1, 0, 0, 0.822),
-      rgba(255, 255, 255, 0.244)
-    ),
+  background-color: #0a1d32;
+  color: white;
+  background: linear-gradient(rgba(1, 0, 0, 0.822), rgba(255, 255, 255, 0.244)),
     url("https://images.hdqwalls.com/wallpapers/video-games-collage-wide.jpg")
       center;
-height: 1100px;
-border: 5px solid #0a1d32;
+  height: 1100px;
+  border: 5px solid #0a1d32;
 `;
 
 const Title = styled.h1`
@@ -66,9 +63,16 @@ const Item = styled.div`
     background-color: #e9f5f5;
     transform: scale(1);
     transition: all 0.1s ease;
-    color: #0a688b;
+    color: #ebebeb;
   }
-  background-color: #0a688b;
+  background: linear-gradient(rgba(16, 12, 12, 0.822), rgba(0, 0, 0, 0.244)),
+    url("https://c4.wallpaperflare.com/wallpaper/806/992/905/digital-digital-art-artwork-cube-lights-hd-wallpaper-preview.jpg")
+      center;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 700;
+
+  font-family: system-ui;
   border-radius: 10px;
   color: #e9f5f5;
   margin-top: 40px;
@@ -100,13 +104,14 @@ const Category = styled.p`
 const ActionCategories = () => {
   const { Action } = useSelector((state) => state.productData);
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const navigate = useNavigate();
-  useEffect(()=> {
-    dispatch(GetDataFromCart())
-    dispatch(GetActionData())
-  },[])
+  useEffect(() => {
+    dispatch(GetDataFromCart());
+    dispatch(GetActionData());
+    dispatch(GetDataFromCart());
+  }, []);
   return (
     <>
       <Container>
@@ -143,25 +148,24 @@ const ActionCategories = () => {
           </Filter>
         </FilterContainer>
         <ItemContainer>
-        {Action.map((e) => (
-          <Item
-            key={e._id}
-            onClick={() => {
-              navigate(`/productdetails/${e._id}`);
-            }}
-          >
-            <Image src={e.image} />
-            <Info>
-              <ProductTitle>Title: {e.title}</ProductTitle>
-              <Category>Category: {e.categories}</Category>
-              <Price>Price: {e.price}</Price>
-              <Rating>Rating: {e.rating}</Rating>
-            </Info>
-          </Item>
-        ))}
-      </ItemContainer>
+          {Action.map((e) => (
+            <Item
+              key={e._id}
+              onClick={() => {
+                navigate(`/productdetails/${e._id}`);
+              }}
+            >
+              <Image src={e.image} />
+              <Info>
+                <ProductTitle>Title: {e.title}</ProductTitle>
+                <Category>Category: {e.categories}</Category>
+                <Price>Price: {e.price}</Price>
+                <Rating>Rating: {e.rating}</Rating>
+              </Info>
+            </Item>
+          ))}
+        </ItemContainer>
       </Container>
-     
       ;
     </>
   );

@@ -4,22 +4,17 @@ import styled from "styled-components";
 
 const Container = styled.div`
   width: 100%;
-  height: 1100px;
+  height: auto;
   padding: 10px 20px;
-  /* margin-top: 50px; */
+  margin-top: 200px;
   justify-content: space-between;
   display: grid;
   grid-gap: 10px;
   grid-template-columns: 800px 800px;
-  background: linear-gradient(
-      rgba(1, 0, 0, 0.822),
-      rgba(255, 255, 255, 0.244)
-    ),
-    url("https://images.hdqwalls.com/wallpapers/video-games-collage-wide.jpg")
-      center;
   background-size: cover;
   align-items: center;
   justify-content: center;
+  
 `;
 const Action = styled.div`
 text-align: center;

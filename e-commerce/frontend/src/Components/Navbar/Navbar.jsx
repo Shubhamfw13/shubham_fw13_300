@@ -6,11 +6,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { Logout } from "../../Redux/Auth/AuthAction";
+import {  GetDataFromCart} from "../../Redux/Products/action";
 import { mobile } from "../../Responsive/responsive";
 
 const Container = styled.div`
   background: linear-gradient(rgba(12, 1, 1, 0.5), rgba(9, 0, 0, 0)),
-    url("https://images.hdqwalls.com/wallpapers/video-games-collage-wide.jpg")
+    url("https://c4.wallpaperflare.com/wallpaper/175/985/284/abstract-3d-digital-art-dark-wallpaper-thumb.jpg")
       center;
   height: 110px;
   font-family: "Aldrich", sans-serif;
@@ -77,13 +78,18 @@ const Menu = styled.div`
 `;
 const Navbar = () => {
   const navigate = useNavigate();
-  const { cart } = useSelector((state) => state.productData);
+  const { cart, Action,RPG,items } = useSelector((state) => state.productData);
+  console.log("cart",cart.products)
   const {user,accessToken} = useSelector((state)=> state.auth)
   const dispatch = useDispatch()
 
+
   const handleLogout = () =>{
     dispatch(Logout())
+    dispatch(GetDataFromCart(user.user_id))
   }
+ console.log(items)
+ 
 
   return (
     <>
@@ -131,7 +137,7 @@ const Navbar = () => {
                 navigate("/cart");
               }}
             >
-              <Badge badgeContent={cart.length} color="primary">
+              <Badge badgeContent={items?items.length:0} color="primary">
                 <ShoppingCartIcon />
               </Badge>
             </Menu>

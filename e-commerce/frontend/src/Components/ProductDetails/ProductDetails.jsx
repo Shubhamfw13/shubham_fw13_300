@@ -2,22 +2,23 @@ import React, { useEffect, useState } from "react";
 import { Add, Remove } from "@mui/icons-material";
 import styled from "styled-components";
 import Navbar from "../Navbar/Navbar";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { mobile } from "../../Responsive/responsive";
-import  {GetSingleData}  from "../../Redux/Products/action";
+import {
+  GetDataFromCart,
+  GetSingleData,
+  SentToCart,
+} from "../../Redux/Products/action";
 
 const Container = styled.div`
-background-image: "";
-background-color: #0a1d32;
-background: linear-gradient(
-      rgba(1, 0, 0, 0.822),
-      rgba(255, 255, 255, 0.244)
-    ),
+  background-image: "";
+  background-color: #0a1d32;
+  background: linear-gradient(rgba(1, 0, 0, 0.822), rgba(255, 255, 255, 0.244)),
     url("https://images.hdqwalls.com/wallpapers/video-games-collage-wide.jpg")
       center;
-color: white;
-border: 5px solid #0a1d32;;
+  color: white;
+  border: 5px solid #0a1d32; ;
 `;
 
 const Wrapper = styled.div`
@@ -147,29 +148,43 @@ const Amount = styled.span`
 `;
 
 const Button = styled.button`
-  padding: 15px;
-  border: 2px solid teal;
-  background-color: white;
+  font-weight: 900;
+  font-family: cursive;
+  height: 50px;
+  color: aliceblue;
+  width: 25%;
+  border: 1px solid rgb(168, 167, 167);
+  border-radius: 8px;
+  font-size: medium;
+  background-color: rgb(40, 40, 40);
   cursor: pointer;
-  font-weight: 500;
   &:hover {
-    background-color: #f8f4f4;
+    background-color: black;
+      height: 53px;
+      width: 30%;
+      border:1px solid rgb(168, 167, 167);
+      color: white;
+      transition: 0.3s;
+      font-size: large;
   }
 `;
 const ProductDetails = () => {
   const { singledata } = useSelector((state) => state.productData);
+  const { user, accessToken } = useSelector((state) => state.auth);
+
+  const navigate = useNavigate();
 
   //   const cart = useSelector((state)=>state.productData.cart)
 
   const { id } = useParams();
   const dispatch = useDispatch();
-
   //   const singledata = Action.find((p) => p.id == id);
 
   //   const isInCart = cart.find((p)=>p.id==id)
 
   useEffect(() => {
     dispatch(GetSingleData(id));
+    dispatch(GetDataFromCart());
     //   dispatch(GetDataFromCart())
   }, []);
 
@@ -191,6 +206,14 @@ const ProductDetails = () => {
   //     dispatch(GetDataFromCart())
   //   }
 
+  const handleCart = () => {
+    // if (!accessToken) {
+    //   navigate("/login")
+    // }
+
+    dispatch(SentToCart(user._id, singledata._id, singledata.price));
+  };
+
   return (
     <>
       <Container>
@@ -205,13 +228,13 @@ const ProductDetails = () => {
             <Desc>{singledata.description}</Desc>
             <Price>₹ {singledata.price}</Price>
             {/* <FilterContainer> */}
-              {/* <Filter>
+            {/* <Filter>
                 <FilterTitle>Color</FilterTitle>
                 <FilterColor color="black" />
                 <FilterColor color="darkblue" />
                 <FilterColor color="gray" />
               </Filter> */}
-              {/* <Filter>
+            {/* <Filter>
                 <FilterTitle>Size</FilterTitle>
                 <FilterSize>
                   <FilterSizeOption>XS</FilterSizeOption>
@@ -228,7 +251,7 @@ const ProductDetails = () => {
                 <Amount>0</Amount>
                 <Add />
               </AmountContainer>
-              <Button>Add To Cart</Button>
+              <Button onClick={handleCart}>Add To Cart</Button>
             </AddContainer>
             <Banner src={singledata.strip} />
           </InfoContainer>

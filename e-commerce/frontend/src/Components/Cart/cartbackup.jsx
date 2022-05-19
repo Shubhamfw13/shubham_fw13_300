@@ -72,6 +72,7 @@ const CheckOutButton = styled.button`
 
 const Cart = () => {
   const { cart } = useSelector((state) => state.productData);
+
   const {id} = useParams()
   const dispatch = useDispatch();
   const navigate = useNavigate()
@@ -87,6 +88,7 @@ const Cart = () => {
     dispatch(GetDataFromCart());
     
   }, []);
+ 
   return (
     <>
     <Navbar />

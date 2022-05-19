@@ -38,9 +38,11 @@ const LoginData = (email, password) => async (dispatch) => {
       })
       .catch((err) => {
         console.log(err.response);
+        alert("Invalid Credentials")
         dispatch(loginFailed({ message: err.response.data }));
       });
     if (res) {
+      alert("Login Success")
       localStorage.setItem("accesToken", res.data.token);
       localStorage.setItem("user", JSON.stringify(res.data.user));
       dispatch(
@@ -48,6 +50,7 @@ const LoginData = (email, password) => async (dispatch) => {
       );
     }
   } catch (err) {
+    alert("Invalid Credentials")
     console.log(err);
   }
 };
@@ -68,11 +71,11 @@ const RegisterData = (username, email, password) => async (dispatch) => {
   }
 };
 
-const Logout = () => (dispatch)=>{
-    localStorage.removeItem("accesToken")
-    localStorage.removeItem("user")
-    dispatch({type:types.LOGOUT})    
+const Logout = () => (dispatch) => {
+  localStorage.removeItem("accesToken")
+  localStorage.removeItem("user")
+  dispatch({ type: types.LOGOUT })
 }
 
 
-export { LoginData,RegisterData,Logout };
+export { LoginData, RegisterData, Logout };

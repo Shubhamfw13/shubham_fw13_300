@@ -70,16 +70,22 @@ const Login = () => {
 
   const dispatch = useDispatch();
 
+
+
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(LoginData(email, password));
   };
-  // useEffect(()=>{
-
-  // })
-
+  useEffect(() => {
+    if (accessToken) {
+      navigate("/")
+    }
+  }, [accessToken])
+  console.log(accessToken)
   return (
     <>
+      {/* {accessToken ? navigate("/") : ""} */}
+
       <Container>
         <Wrapper>
           <Title>SIGN IN</Title>

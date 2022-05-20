@@ -87,6 +87,7 @@ const Navbar = () => {
   const handleLogout = () =>{
     dispatch(Logout())
     dispatch(GetDataFromCart(user.user_id))
+
   }
  console.log(items)
  

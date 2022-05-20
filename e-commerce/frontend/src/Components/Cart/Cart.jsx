@@ -84,7 +84,7 @@ const Cart = () => {
 
 
   const deleteItem = (id) => {
-    dispatch(deleteCart(id));
+    dispatch(deleteCart(id,user._id));
     console.log("clicked");
   };
 
@@ -145,12 +145,12 @@ const Cart = () => {
                         <Typography variant="body2" color="text.secondary">
                           ID: {e._id}
                         </Typography>
-                        <Typography onClick={() => deleteItem(e.id)} variant="body2" color="text.secondary">
+                        <Typography onClick={() => deleteItem(e._id)} variant="body2" color="text.secondary">
                           Quantity : {cart.products.find((cp)=>cp.product_id === e._id).quantity}
                         </Typography>
                       </Grid>
                       <Grid item>
-                        <Button onClick={() => deleteItem(e.id)} variant="outlined">Remove Item</Button>
+                        <Button onClick={() => deleteItem(e._id)} variant="outlined">Remove Item</Button>
                       </Grid>
                     </Grid>
                     {/* <Grid item>

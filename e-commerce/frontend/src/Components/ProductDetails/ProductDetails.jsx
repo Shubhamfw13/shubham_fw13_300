@@ -1,4 +1,4 @@
-import React, { useEffect, useState,useReducer } from "react";
+import React, { useEffect, useState, useReducer } from "react";
 import { Add, Remove } from "@mui/icons-material";
 import styled from "styled-components";
 import Navbar from "../Navbar/Navbar";
@@ -209,12 +209,14 @@ const ProductDetails = () => {
   //   }
 
   const handleCart = () => {
-    // if (!accessToken) {
-    //   navigate("/login")
-    // }
+    if (!accessToken) {
+      navigate("/login")
+    }
 
-    dispatch(SentToCart(user._id, singledata._id, singledata.price));
-   dispatch(GetDataFromCart(user._id))
+    else {
+      dispatch(SentToCart(user._id, singledata._id, singledata.price));
+      dispatch(GetDataFromCart(user._id))
+    }
   };
 
   return (

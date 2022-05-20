@@ -43,7 +43,7 @@ const LoginData = (email, password) => async (dispatch) => {
       });
     if (res) {
       alert("Login Success")
-      localStorage.setItem("accesToken", res.data.token);
+      localStorage.setItem("accessToken", res.data.token);
       localStorage.setItem("user", JSON.stringify(res.data.user));
       dispatch(
         loginSuccess({ accessToken: res.data.token, user: res.data.user })
@@ -72,9 +72,10 @@ const RegisterData = (username, email, password) => async (dispatch) => {
 };
 
 const Logout = () => (dispatch) => {
-  localStorage.removeItem("accesToken")
+  localStorage.removeItem("accessToken")
   localStorage.removeItem("user")
   dispatch({ type: types.LOGOUT })
+  alert("Logged Out")
 }
 
 

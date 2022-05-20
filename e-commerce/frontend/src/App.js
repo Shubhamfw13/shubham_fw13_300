@@ -10,8 +10,10 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(GetDataFromCart(user._id));
-  });
+    if(user){
+      dispatch(GetDataFromCart(user._id));
+    }
+  }, [user]);
 
   return (
     <>

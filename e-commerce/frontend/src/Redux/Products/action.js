@@ -79,6 +79,7 @@ const GetRpgData = () => (dispatch) => {
 
 const GetSingleData = (id) => (dispatch) => {
   dispatch(getSingleDataReq("Getting Single Data"));
+  console.log(id)
   try {
     axios
       .get(`http://localhost:8000/products/${id}`)
@@ -129,6 +130,8 @@ const SendPaymentData = (formData) => (dispatch) => {
 
 const GetDataFromCart = (user_id) => (dispatch) => {
   //   console.log(menSingleData,"action")
+  console.log(user_id)
+  if(user_id){
   try {
     axios
       .get(`http://localhost:8000/cart/${user_id}`)
@@ -141,6 +144,7 @@ const GetDataFromCart = (user_id) => (dispatch) => {
   } catch (err) {
     console.log(err);
   }
+}
 };
 
 const UpdateCart = (data) => (dispatch) => {
@@ -160,10 +164,13 @@ const UpdateCart = (data) => (dispatch) => {
   }
 };
 
-const deleteCart = (id) => (dispatch) => {
+const deleteCart = (id, user_id) => (dispatch) => {
+  console.log(id,user_id, "delete cart")
   try {
     axios
-      .delete(`http://localhost:8070/cart/${id}`, id)
+      .delete(`http://localhost:8000/cart/${id}/${user_id}`, {
+       
+      })
       .then(() => {
         dispatch(GetDataFromCart());
       })

@@ -52,10 +52,10 @@ router.get("/", async (req, res) => {
     let product;
     if (qLatest) {
       product = await Product.find().sort({ createdAt: -1 }).limit(5);
-      //   http://localhost:8000/products?new=true
+      //   https://gamersparadisee.herokuapp.com/products?new=true
     } else if (qCategory) {
-      // http://localhost:8000/products?categories=RPG
-      // http://localhost:8000/products?categories=Action
+      // https://gamersparadisee.herokuapp.com/products?categories=RPG
+      // https://gamersparadisee.herokuapp.com/products?categories=Action
       product = await Product.find({
         categories: {
           $in: [qCategory],

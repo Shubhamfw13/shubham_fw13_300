@@ -5,8 +5,9 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import SportsEsportsTwoToneIcon from "@mui/icons-material/SportsEsportsTwoTone";
 import { Logout } from "../../Redux/Auth/AuthAction";
-import {  GetDataFromCart} from "../../Redux/Products/action";
+import { emptyCart, GetDataFromCart } from "../../Redux/Products/action";
 import { mobile } from "../../Responsive/responsive";
 
 const Container = styled.div`
@@ -59,7 +60,10 @@ const Center = styled.div`
 
 const Logo = styled.h1`
   cursor: pointer;
-  font-weight: bold;
+  font-weight: 900;
+  font-size: 40px;
+  color: #f593a2;
+  font-family: "Special Elite", cursive;
   ${mobile({ fontSize: "24px" })}
 `;
 const Right = styled.div`
@@ -78,30 +82,29 @@ const Menu = styled.div`
 `;
 const Navbar = () => {
   const navigate = useNavigate();
-  const { cart, Action,RPG,items } = useSelector((state) => state.productData);
-  console.log("cart",cart.products)
-  const {user,accessToken} = useSelector((state)=> state.auth)
-  const dispatch = useDispatch()
+  const { cart, Action, RPG, items } = useSelector(
+    (state) => state.productData
+  );
+  console.log("cart", cart.products);
+  const { user, accessToken } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
 
-
-  const handleLogout = () =>{
-    dispatch(Logout())
-    dispatch(GetDataFromCart(user.user_id))
-
-  }
- console.log(items)
- 
+  const handleLogout = () => {
+    dispatch(Logout());
+    dispatch(emptyCart());
+  };
+  console.log(items);
 
   return (
     <>
       <Container>
         <Wrapper>
           <Left>
-            <Lang>EN</Lang>
-            <SearchContainer>
-              <InputBox />
-              <SearchIcon style={{ color: "blue", fontSize: 15 }} />
-            </SearchContainer>
+            {/* <Lang>EN</Lang> */}
+            {/* <SearchContainer> */}
+              {/* <InputBox />
+              <SearchIcon style={{ color: "blue", fontSize: 15 }} /> */}
+            {/* </SearchContainer> */}
           </Left>
           <Center>
             <Logo
@@ -109,7 +112,9 @@ const Navbar = () => {
                 navigate("/");
               }}
             >
-              E-Commerce
+              GAMERS
+              <SportsEsportsTwoToneIcon />
+              PARADISE
             </Logo>
           </Center>
           <Right>
@@ -127,18 +132,14 @@ const Navbar = () => {
             >
               Sign-In
             </Menu>
-            <Menu
-              onClick={handleLogout}
-            >
-              Logout
-            </Menu>
+            <Menu onClick={handleLogout}>Logout</Menu>
 
             <Menu
               onClick={() => {
                 navigate("/cart");
               }}
             >
-              <Badge badgeContent={items?items.length:0} color="primary">
+              <Badge badgeContent={cart.products ? cart.products.length : 0} color="primary">
                 <ShoppingCartIcon />
               </Badge>
             </Menu>

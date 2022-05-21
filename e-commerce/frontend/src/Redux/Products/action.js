@@ -53,7 +53,8 @@ const GetActionData = () => (dispatch) => {
   dispatch(getActionDataReq("Getting Action Data"));
   try {
     axios
-      .get("http://localhost:8000/products?categories=Action")
+      .get("https://gamersparadisee.herokuapp.com/products?categories=Action")
+
       .then((res) => {
         dispatch(getActionDataSuccess(res.data));
       })
@@ -67,7 +68,7 @@ const GetRpgData = () => (dispatch) => {
   dispatch(getRpgDataReq("Getting RPG Data"));
   try {
     axios
-      .get("http://localhost:8000/products?categories=RPG")
+      .get("https://gamersparadisee.herokuapp.com/products?categories=RPG")
       .then((res) => {
         dispatch(getRpgDataSuccess(res.data));
       })
@@ -79,10 +80,10 @@ const GetRpgData = () => (dispatch) => {
 
 const GetSingleData = (id) => (dispatch) => {
   dispatch(getSingleDataReq("Getting Single Data"));
-  console.log(id)
+  console.log(id);
   try {
     axios
-      .get(`http://localhost:8000/products/${id}`)
+      .get(`https://gamersparadisee.herokuapp.com/products/${id}`)
       .then((res) => {
         console.log(res.data);
         dispatch(getSingleDataSuccess(res.data));
@@ -97,15 +98,15 @@ const SentToCart = (user_id, product_id, product_price) => (dispatch) => {
   //   console.log(menSingleData,"action")
   try {
     axios
-      .post(`http://localhost:8000/cart/${user_id}`, {
+      .post(`https://gamersparadisee.herokuapp.com/cart/${user_id}`, {
         user_id,
         product_id,
         product_price,
       })
       .then(() => {
-        alert("added to cart")
+        alert("added to cart");
         dispatch(sentTocart());
-        dispatch(GetDataFromCart(user_id))
+        dispatch(GetDataFromCart(user_id));
       })
       .catch((err) => {
         console.log(err);
@@ -130,21 +131,21 @@ const SendPaymentData = (formData) => (dispatch) => {
 
 const GetDataFromCart = (user_id) => (dispatch) => {
   //   console.log(menSingleData,"action")
-  console.log(user_id)
-  if(user_id){
-  try {
-    axios
-      .get(`http://localhost:8000/cart/${user_id}`)
-      .then((res) => {
-        dispatch(getDataFromCart(res.data));
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  } catch (err) {
-    console.log(err);
+  console.log(user_id);
+  if (user_id) {
+    try {
+      axios
+        .get(`https://gamersparadisee.herokuapp.com/cart/${user_id}`)
+        .then((res) => {
+          dispatch(getDataFromCart(res.data));
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } catch (err) {
+      console.log(err);
+    }
   }
-}
 };
 
 const UpdateCart = (data) => (dispatch) => {
@@ -164,15 +165,13 @@ const UpdateCart = (data) => (dispatch) => {
   }
 };
 
-const deleteCart = (id, user_id) => (dispatch) => {
-  console.log(id,user_id, "delete cart")
+const deleteCart = (id, user_id, all) => (dispatch) => {
+  console.log(id, user_id, "delete cart");
   try {
     axios
-      .delete(`http://localhost:8000/cart/${id}/${user_id}`, {
-       
-      })
+      .delete(`https://gamersparadisee.herokuapp.com/cart/${id}/${user_id}?all=${all}`, {})
       .then(() => {
-        dispatch(GetDataFromCart());
+        dispatch(GetDataFromCart(user_id));
       })
       .catch((err) => {
         console.log(err);
@@ -180,6 +179,11 @@ const deleteCart = (id, user_id) => (dispatch) => {
   } catch (err) {
     console.log(err);
   }
+};
+
+const emptyCart = () => (dispatch) => {
+  console.log("called");
+  dispatch({ type: types.EMPTY_CART });
 };
 
 export {
@@ -191,4 +195,5 @@ export {
   UpdateCart,
   deleteCart,
   SendPaymentData,
+  emptyCart,
 };

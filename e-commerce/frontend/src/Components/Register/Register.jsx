@@ -75,6 +75,7 @@ const Register = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(RegisterData(value.username, value.email, value.password));
+    navigate("/login")
   };
 
   return (

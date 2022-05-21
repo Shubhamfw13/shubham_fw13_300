@@ -1,4 +1,5 @@
 import axios from "axios";
+import { emptyCart } from "../Products/action";
 import * as types from "./types";
 
 // import axios from "axios";
@@ -8,7 +9,7 @@ import * as types from "./types";
 //   dispatch(loginRequest());
 //   try {
 //     await axios
-//       .post("http://localhost:8000/auth/login", user)
+//       .post("https://gamersparadisee.herokuapp.com/auth/login", user)
 //       .then((res) => {
 //         dispatch(loginSuccess(res.data));
 //       })
@@ -32,17 +33,17 @@ const LoginData = (email, password) => async (dispatch) => {
   try {
     dispatch(loginReq({ message: "Loading" }));
     const res = await axios
-      .post("http://localhost:8000/auth/login", {
+      .post("https://gamersparadisee.herokuapp.com/auth/login", {
         email,
         password,
       })
       .catch((err) => {
         console.log(err.response);
-        alert("Invalid Credentials")
+        alert("Invalid Credentials");
         dispatch(loginFailed({ message: err.response.data }));
       });
     if (res) {
-      alert("Login Success")
+      alert("Login Success");
       localStorage.setItem("accessToken", res.data.token);
       localStorage.setItem("user", JSON.stringify(res.data.user));
       dispatch(
@@ -50,7 +51,7 @@ const LoginData = (email, password) => async (dispatch) => {
       );
     }
   } catch (err) {
-    alert("Invalid Credentials")
+    alert("Invalid Credentials");
     console.log(err);
   }
 };
@@ -58,7 +59,7 @@ const LoginData = (email, password) => async (dispatch) => {
 const RegisterData = (username, email, password) => async (dispatch) => {
   dispatch(registerReq({ message: "LOADING" }));
   const res = await axios
-    .post("http://localhost:8000/auth/register", {
+    .post("https://gamersparadisee.herokuapp.com/auth/register", {
       username,
       email,
       password,
@@ -72,11 +73,10 @@ const RegisterData = (username, email, password) => async (dispatch) => {
 };
 
 const Logout = () => (dispatch) => {
-  localStorage.removeItem("accessToken")
-  localStorage.removeItem("user")
-  dispatch({ type: types.LOGOUT })
-  alert("Logged Out")
-}
-
+  localStorage.removeItem("accessToken");
+  localStorage.removeItem("user");
+  dispatch({ type: types.LOGOUT });
+  alert("Logged Out");
+};
 
 export { LoginData, RegisterData, Logout };

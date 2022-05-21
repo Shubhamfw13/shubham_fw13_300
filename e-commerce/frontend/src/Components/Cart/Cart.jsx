@@ -13,6 +13,8 @@ import Typography from "@mui/material/Typography";
 import ButtonBase from "@mui/material/ButtonBase";
 import CssBaseline from '@mui/material/CssBaseline';
 import Container from '@mui/material/Container';
+import axios from "axios";
+import CurrencyRupeeTwoToneIcon from '@mui/icons-material/CurrencyRupeeTwoTone';
 
 
 const ParentContainer = styledcomp.div`
@@ -84,12 +86,21 @@ const Cart = () => {
 
 
   const deleteItem = (id) => {
-    dispatch(deleteCart(id,user._id));
+    dispatch(deleteCart(id,user._id,false));
     console.log("clicked");
   };
 
+  const handleCheckout = async() => {
+    const data = await axios.get(`https://gamersparadisee.herokuapp.com/order/checkout/${user._id}`).then(res=>res.data)
+
+    window.location.href = data.url
+  }
+
   useEffect(() => {
-    dispatch(GetDataFromCart(user._id));
+    if(user){
+
+      dispatch(GetDataFromCart(user._id));
+    }
     if(Action.length == 0 || RPG.length == 0){
       dispatch(GetActionData())
       dispatch(GetRpgData())
@@ -111,7 +122,7 @@ const Cart = () => {
         <Right>
           <CssBaseline />
           <Container>
-            {data.filter(p=> cart.products.findIndex((cp)=>cp.product_id === p._id) > -1 ).map((e) => (
+            {data && data.filter(p=> cart.products.findIndex((cp)=>cp.product_id === p._id) > -1 ).map((e) => (
               <Paper
                 key={e._id}
                 sx={{
@@ -177,23 +188,21 @@ const Cart = () => {
             </SummaryItem>
             <SummaryItem>
               <SummaryItemText>Estimated Shipping</SummaryItemText>
-              <SummaryItemPrice>$ 15</SummaryItemPrice>
+              <SummaryItemPrice>₹ 15</SummaryItemPrice>
             </SummaryItem>
             <SummaryItem>
               <SummaryItemText>Shipping Discount</SummaryItemText>
-              <SummaryItemPrice>$ -5.90</SummaryItemPrice>
+              <SummaryItemPrice>₹ -5.90</SummaryItemPrice>
             </SummaryItem>
             <SummaryItem type="total">
               <SummaryItemText>Total</SummaryItemText>
-              <SummaryItemPrice>
+              <SummaryItemPrice> ₹
                 {cart.products && cart.products.reduce((a, b) => a + 5 + (b.quantity * b.price), 0)
-                  .toFixed(2)}
+                  .toFixed(0)}
               </SummaryItemPrice>
             </SummaryItem>
             <CheckOutButton
-              onClick={() => {
-                navigate(`/checkout`);
-              }}
+              onClick={handleCheckout}
             >
               CHECKOUT NOW
             </CheckOutButton>

@@ -118,7 +118,7 @@ const ActionCategories = () => {
         <Navbar />
         <Title>ACTION</Title>
         <FilterContainer>
-          <Filter>
+          {/* <Filter>
             <FilterText>Filter Products:</FilterText>
             <Select>
               <Option default>Color</Option>
@@ -145,7 +145,7 @@ const ActionCategories = () => {
               <Option>Price (asc)</Option>
               <Option>Price (desc)</Option>
             </Select>
-          </Filter>
+          </Filter> */}
         </FilterContainer>
         <ItemContainer>
           {Action.map((e) => (

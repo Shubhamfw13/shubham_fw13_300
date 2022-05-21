@@ -117,7 +117,7 @@ const RpgCategories = () => {
         <Navbar />
         <Title>RPG</Title>
         <FilterContainer>
-          <Filter>
+          {/* <Filter>
             <FilterText>Filter Products:</FilterText>
             <Select>
               <Option default>Color</Option>
@@ -144,7 +144,7 @@ const RpgCategories = () => {
               <Option>Price (asc)</Option>
               <Option>Price (desc)</Option>
             </Select>
-          </Filter>
+          </Filter> */}
         </FilterContainer>
         <ItemContainer>
           {RPG.map((e) => (

@@ -70,18 +70,16 @@ const Login = () => {
 
   const dispatch = useDispatch();
 
-
-
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(LoginData(email, password));
   };
   useEffect(() => {
     if (accessToken) {
-      navigate("/")
+      navigate("/");
     }
-  }, [accessToken])
-  console.log(accessToken)
+  }, [accessToken]);
+  console.log(accessToken);
   return (
     <>
       {/* {accessToken ? navigate("/") : ""} */}
@@ -106,7 +104,13 @@ const Login = () => {
             />
             <Button onClick={handleSubmit}>LOGIN</Button>
             <Link>DO NOT YOU REMEMBER THE PASSWORD?</Link>
-            <Link>CREATE A NEW ACCOUNT</Link>
+            <Link
+              onClick={() => {
+                navigate("/register");
+              }}
+            >
+              CREATE A NEW ACCOUNT
+            </Link>
           </Form>
         </Wrapper>
       </Container>

@@ -7,7 +7,7 @@ const initialState = {
   RPG: [],
   singledata: [],
   cart: {},
-  items:{}
+  items: {},
 };
 
 export const productReducer = (state = initialState, { type, payload }) => {
@@ -40,7 +40,9 @@ export const productReducer = (state = initialState, { type, payload }) => {
       return { ...state, loading: payload };
 
     case types.GET_DATA_FROM_CART:
-      return { ...state, cart: payload,items:payload.products };
+      return { ...state, cart: payload, items: payload.products };
+    case types.EMPTY_CART:
+      return { ...state, cart: { products: [] } };
 
     default:
       return state;

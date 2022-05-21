@@ -45,11 +45,35 @@ router.post("/:id", async (req, res) => {
 });
 
 router.get("/:id", async (req, res) => {
+  console.log(req.body, req.params, "get cart");
   try {
     const items = await Cart.findOne({ user_id: req.params.id }).lean().exec();
     return res.status(200).send(items);
   } catch (error) {
     // console.log(error);
+    return res.status(404).send({});
+  }
+});
+
+router.delete("/:id/:user_id", async (req, res) => {
+  const user_id = req.params.user_id;
+  const productid = req.params.id;
+  const is_delete_all = req.query.all
+  console.log(is_delete_all);
+  try {
+    if(is_delete_all){
+      console.log("deleting all")
+      await Cart.deleteOne({user_id}).exec()
+    } else {
+       await Cart.findOneAndUpdate(
+      { user_id: user_id },
+      { $pull: { products: { product_id: productid } } }
+    ).exec();
+    }
+    return res.status(200).send("Cart Deleted");
+  } catch (error) {
+    // console.log(error);
+    return res.status(500).send("Failed");
   }
 });
 

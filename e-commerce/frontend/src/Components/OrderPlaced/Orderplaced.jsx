@@ -18,7 +18,7 @@ const Orderplaced = () => {
     useEffect(()=>{
       if(location.search) {
        
-         const details = axios.get(`https://gamersparadisee.herokuapp.com/order/success${location.search}`).then((res)=>res.data).then(res=>setSession(res.session))
+         const details = axios.get(`http://localhost:8000/order/success${location.search}`).then((res)=>res.data).then(res=>setSession(res.session))
       }
 
       dispatch(deleteCart(undefined,user._id,true))

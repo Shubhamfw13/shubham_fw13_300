@@ -9,7 +9,7 @@ import * as types from "./types";
 //   dispatch(loginRequest());
 //   try {
 //     await axios
-//       .post("https://gamersparadisee.herokuapp.com/auth/login", user)
+//       .post("http://localhost:8000/auth/login", user)
 //       .then((res) => {
 //         dispatch(loginSuccess(res.data));
 //       })
@@ -33,7 +33,7 @@ const LoginData = (email, password) => async (dispatch) => {
   try {
     dispatch(loginReq({ message: "Loading" }));
     const res = await axios
-      .post("https://gamersparadisee.herokuapp.com/auth/login", {
+      .post("http://localhost:8000/auth/login", {
         email,
         password,
       })
@@ -59,7 +59,7 @@ const LoginData = (email, password) => async (dispatch) => {
 const RegisterData = (username, email, password) => async (dispatch) => {
   dispatch(registerReq({ message: "LOADING" }));
   const res = await axios
-    .post("https://gamersparadisee.herokuapp.com/auth/register", {
+    .post("http://localhost:8000/auth/register", {
       username,
       email,
       password,

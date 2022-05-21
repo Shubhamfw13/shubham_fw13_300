@@ -61,10 +61,11 @@ router.delete("/:id/:user_id", async (req, res) => {
   const is_delete_all = req.query.all
   console.log(is_delete_all);
   try {
-    if(is_delete_all){
+    if(is_delete_all == "true"){
       console.log("deleting all")
       await Cart.deleteOne({user_id}).exec()
     } else {
+      console.log("deleting", productid)
        await Cart.findOneAndUpdate(
       { user_id: user_id },
       { $pull: { products: { product_id: productid } } }

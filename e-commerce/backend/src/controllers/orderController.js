@@ -1,12 +1,13 @@
 
 const router = require("express").Router()
 const Cart = require("../models/cartModel");
-const stripe = require('stripe')('sk_test_51KymyFSFIYZMWCqFPxW8a41EzeWKiBnQzj1CD6Mn2fRfFQW85DUdXIofFebrJzou9ZMFSVRSvYLnmOMD63y5s5Iq00otuOk0bw')
+const stripe = require('stripe')(process.env.STRIPE)
 
 router.get("/checkout/:user_id",async (req,res)=>{
     const user_id = req.params.user_id;
     const cart  =await Cart.findOne({user_id}).exec()
-    if(cart.products){
+    try{
+      if(cart.products){
        
         const session = await stripe.checkout.sessions.create({
             line_items: cart.products.map((item,i)=>({
@@ -20,14 +21,18 @@ router.get("/checkout/:user_id",async (req,res)=>{
                 quantity: item.quantity ,
               })),
             mode: 'payment',
-            success_url: `http://localhost:3000/checkout/success?session_id={CHECKOUT_SESSION_ID}`,
-            cancel_url: 'http://localhost:3000/checkout/failed?session_id={CHECKOUT_SESSION_ID}',
+            success_url: `https://gamersparadise.vercel.app/checkout/success?session_id={CHECKOUT_SESSION_ID}`,
+            cancel_url: 'https://gamersparadise.vercel.app/checkout/failed?session_id={CHECKOUT_SESSION_ID}',
             billing_address_collection: "required"
           });
         res.send({url:session.url})
     } else {
         res.send({err: "No item in cart"},404)
     }
+    }catch(err){
+      res.status(500).send({Error:err.messsage})
+    }
+  
 })
 
 

@@ -97,6 +97,7 @@ export const Categories = () => {
       >
         {/* <Poster src="https://thegeek.games/wp-content/uploads/2021/05/the-geek-Blizzard-1.jpg" /> */}
         <Categ>RPG</Categ>
+        
       </Rpg>
     </Container>
   );

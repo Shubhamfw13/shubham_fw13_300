@@ -91,7 +91,7 @@ const Cart = () => {
   };
 
   const handleCheckout = async() => {
-    const data = await axios.get(`http://localhost:8000/order/checkout/${user._id}`).then(res=>res.data)
+    const data = await axios.get(`https://gamersparadisee.herokuapp.com/order/checkout/${user._id}`).then(res=>res.data)
 
     window.location.href = data.url
   }

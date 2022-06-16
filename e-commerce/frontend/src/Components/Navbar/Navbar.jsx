@@ -85,15 +85,15 @@ const Navbar = () => {
   const { cart, Action, RPG, items } = useSelector(
     (state) => state.productData
   );
-  console.log("cart", cart.products);
+
   const { user, accessToken } = useSelector((state) => state.auth);
+  console.log("cart", cart.products);
   const dispatch = useDispatch();
 
   const handleLogout = () => {
     dispatch(Logout());
     dispatch(emptyCart());
   };
-  console.log(items);
 
   return (
     <>
@@ -102,7 +102,7 @@ const Navbar = () => {
           <Left>
             {/* <Lang>EN</Lang> */}
             {/* <SearchContainer> */}
-              {/* <InputBox />
+            {/* <InputBox />
               <SearchIcon style={{ color: "blue", fontSize: 15 }} /> */}
             {/* </SearchContainer> */}
           </Left>
@@ -118,28 +118,38 @@ const Navbar = () => {
             </Logo>
           </Center>
           <Right>
-            <Menu
-              onClick={() => {
-                navigate("/register");
-              }}
-            >
-              Register
-            </Menu>
-            <Menu
-              onClick={() => {
-                navigate("/login");
-              }}
-            >
-              Sign-In
-            </Menu>
-            <Menu onClick={handleLogout}>Logout</Menu>
+            {user&&user.username ? (
+              <Menu>{user.username}</Menu>
+            ) : (
+              <Menu
+                onClick={() => {
+                  navigate("/register");
+                }}
+              >
+                Register
+              </Menu>
+            )}
 
+            {!accessToken ? (
+              <Menu
+                onClick={() => {
+                  navigate("/login");
+                }}
+              >
+                Sign-In
+              </Menu>
+            ) : (
+              <Menu onClick={handleLogout}>Logout</Menu>
+            )}
             <Menu
               onClick={() => {
                 navigate("/cart");
               }}
             >
-              <Badge badgeContent={cart.products ? cart.products.length : 0} color="primary">
+              <Badge
+                badgeContent={cart.products ? cart.products.length : 0}
+                color="primary"
+              >
                 <ShoppingCartIcon />
               </Badge>
             </Menu>

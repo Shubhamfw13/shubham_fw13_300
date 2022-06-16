@@ -53,7 +53,7 @@ const GetActionData = () => (dispatch) => {
   dispatch(getActionDataReq("Getting Action Data"));
   try {
     axios
-      .get("http://localhost:8000/products?categories=Action")
+      .get("https://gamersparadisee.herokuapp.com/products?categories=Action")
 
       .then((res) => {
         dispatch(getActionDataSuccess(res.data));
@@ -68,7 +68,7 @@ const GetRpgData = () => (dispatch) => {
   dispatch(getRpgDataReq("Getting RPG Data"));
   try {
     axios
-      .get("http://localhost:8000/products?categories=RPG")
+      .get("https://gamersparadisee.herokuapp.com/products?categories=RPG")
       .then((res) => {
         dispatch(getRpgDataSuccess(res.data));
       })
@@ -83,7 +83,7 @@ const GetSingleData = (id) => (dispatch) => {
   console.log(id);
   try {
     axios
-      .get(`http://localhost:8000/products/${id}`)
+      .get(`https://gamersparadisee.herokuapp.com/products/${id}`)
       .then((res) => {
         console.log(res.data);
         dispatch(getSingleDataSuccess(res.data));
@@ -98,7 +98,7 @@ const SentToCart = (user_id, product_id, product_price) => (dispatch) => {
   //   console.log(menSingleData,"action")
   try {
     axios
-      .post(`http://localhost:8000/cart/${user_id}`, {
+      .post(`https://gamersparadisee.herokuapp.com/cart/${user_id}`, {
         user_id,
         product_id,
         product_price,
@@ -134,7 +134,7 @@ const GetDataFromCart = (user_id) => (dispatch) => {
   if (user_id) {
     try {
       axios
-        .get(`http://localhost:8000/cart/${user_id}`)
+        .get(`https://gamersparadisee.herokuapp.com/cart/${user_id}`)
         .then((res) => {
           dispatch(getDataFromCart(res.data));
         })
@@ -168,7 +168,7 @@ const deleteCart = (id, user_id, all) => (dispatch) => {
   console.log(id, user_id, "delete cart");
   try {
     axios
-      .delete(`http://localhost:8000/cart/${id}/${user_id}?all=${all}`, {})
+      .delete(`https://gamersparadisee.herokuapp.com/cart/${id}/${user_id}?all=${all}`, {})
       .then(() => {
         dispatch(GetDataFromCart(user_id));
       })
@@ -196,3 +196,8 @@ export {
   SendPaymentData,
   emptyCart,
 };
+
+
+
+
+

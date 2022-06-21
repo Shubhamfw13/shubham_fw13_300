@@ -160,20 +160,17 @@ const Button = styled.button`
   cursor: pointer;
   &:hover {
     background-color: black;
-      height: 53px;
-      width: 30%;
-      border:1px solid rgb(168, 167, 167);
-      color: white;
-      transition: 0.3s;
-      font-size: large;
+    height: 53px;
+    width: 30%;
+    border: 1px solid rgb(168, 167, 167);
+    color: white;
+    transition: 0.3s;
+    font-size: large;
   }
 `;
 const ProductDetails = () => {
   const { singledata } = useSelector((state) => state.productData);
   const { user, accessToken } = useSelector((state) => state.auth);
-
-
-
 
   const navigate = useNavigate();
 
@@ -210,12 +207,10 @@ const ProductDetails = () => {
 
   const handleCart = () => {
     if (!accessToken) {
-      navigate("/login")
-    }
-
-    else {
+      navigate("/login");
+    } else {
       dispatch(SentToCart(user._id, singledata._id, singledata.price));
-      dispatch(GetDataFromCart(user._id))
+      dispatch(GetDataFromCart(user._id));
     }
   };
 
@@ -232,24 +227,6 @@ const ProductDetails = () => {
             <Category>Category: {singledata.categories}</Category>
             <Desc>{singledata.description}</Desc>
             <Price>₹ {singledata.price}</Price>
-            {/* <FilterContainer> */}
-            {/* <Filter>
-                <FilterTitle>Color</FilterTitle>
-                <FilterColor color="black" />
-                <FilterColor color="darkblue" />
-                <FilterColor color="gray" />
-              </Filter> */}
-            {/* <Filter>
-                <FilterTitle>Size</FilterTitle>
-                <FilterSize>
-                  <FilterSizeOption>XS</FilterSizeOption>
-                  <FilterSizeOption>S</FilterSizeOption>
-                  <FilterSizeOption>M</FilterSizeOption>
-                  <FilterSizeOption>L</FilterSizeOption>
-                  <FilterSizeOption>XL</FilterSizeOption>
-                </FilterSize>
-              </Filter> */}
-            {/* </FilterContainer> */}
             <AddContainer>
               <AmountContainer>
                 <Remove />

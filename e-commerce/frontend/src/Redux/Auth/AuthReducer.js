@@ -2,32 +2,6 @@
 import { Action } from "history";
 import * as types from "./types";
 
-// const AuthRedux = createSlice({
-//   name: "user",
-//   initialState: {
-//     current: null,
-//     fetching: false,
-//     error: false,
-//   },
-//   reducers: {
-//     loginRequest: (state) => {
-//       state.fetching = true;
-//     },
-//     loginSuccess: (state, action) => {
-//       state.fetching = false;
-//       state.current = action.payload;
-//     },
-//     loginFailed: (state) => {
-//       state.fetching = false;
-//       state.error = true;
-//     },
-//   },
-// });
-
-// export const { loginRequest, loginSuccess, loginFailed } = AuthRedux.actions;
-
-// export default AuthRedux.reducer;
-
 const initialState = {
   accessToken: localStorage.getItem("accessToken"),
   loading: false,

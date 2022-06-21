@@ -2,22 +2,6 @@ import axios from "axios";
 import { emptyCart } from "../Products/action";
 import * as types from "./types";
 
-// import axios from "axios";
-// import { loginFailed, loginRequest, loginSuccess } from "./AuthRedux";
-
-// export const loginData = async (dispatch, user) => {
-//   dispatch(loginRequest());
-//   try {
-//     await axios
-//       .post("https://gamersparadisee.herokuapp.com/auth/login", user)
-//       .then((res) => {
-//         dispatch(loginSuccess(res.data));
-//       })
-//       .catch((err) => {
-//         dispatch(loginFailed(err));
-//       });
-//   } catch (err) {}
-// };
 const loginReq = (payload) => ({ type: types.LOGIN_REQ });
 const loginSuccess = (payload) => ({ type: types.LOGIN_SUCCESS, payload });
 const loginFailed = (payload) => ({ type: types.LOGIN_FAILED, payload });

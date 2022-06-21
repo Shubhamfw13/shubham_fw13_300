@@ -5,6 +5,8 @@ import { GetDataFromCart, GetRpgData } from "../../Redux/Products/action";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { mobile } from "../../Responsive/responsive";
+import ActionCategories from "./ActionCategories";
+import LoadingAnimation from "../Loading/Loadig";
 
 const Container = styled.div`
   background-color: #0a1d32;
@@ -113,58 +115,33 @@ const RpgCategories = () => {
 
   return (
     <>
-      <Container>
-        <Navbar />
-        <Title>RPG</Title>
-        <FilterContainer>
-          {/* <Filter>
-            <FilterText>Filter Products:</FilterText>
-            <Select>
-              <Option default>Color</Option>
-              <Option>White</Option>
-              <Option>Black</Option>
-              <Option>Red</Option>
-              <Option>Blue</Option>
-              <Option>Yellow</Option>
-              <Option>Green</Option>
-            </Select>
-            <Select>
-              <Option default>Size</Option>
-              <Option>XS</Option>
-              <Option>S</Option>
-              <Option>M</Option>
-              <Option>L</Option>
-              <Option>XL</Option>
-            </Select>
-          </Filter>
-          <Filter>
-            <FilterText>Sort Products:</FilterText>
-            <Select>
-              <Option default>Sort</Option>
-              <Option>Price (asc)</Option>
-              <Option>Price (desc)</Option>
-            </Select>
-          </Filter> */}
-        </FilterContainer>
-        <ItemContainer>
-          {RPG.map((e) => (
-            <Item
-              key={e._id}
-              onClick={() => {
-                navigate(`/productdetails/${e._id}`);
-              }}
-            >
-              <Image src={e.image} />
-              <Info>
-                <ProductTitle>Title: {e.title}</ProductTitle>
-                <Category>Category: {e.categories}</Category>
-                <Price>Price: {e.price}</Price>
-                <Rating>Rating: {e.rating}</Rating>
-              </Info>
-            </Item>
-          ))}
-        </ItemContainer>
-      </Container>
+      {!RPG.length ? (
+        <LoadingAnimation />
+      ) : (
+        <Container>
+          <Navbar />
+          <Title>RPG</Title>
+          <FilterContainer></FilterContainer>
+          <ItemContainer>
+            {RPG.map((e) => (
+              <Item
+                key={e._id}
+                onClick={() => {
+                  navigate(`/productdetails/${e._id}`);
+                }}
+              >
+                <Image src={e.image} />
+                <Info>
+                  <ProductTitle>Title: {e.title}</ProductTitle>
+                  <Category>Category: {e.categories}</Category>
+                  <Price>Price: {e.price}</Price>
+                  <Rating>Rating: {e.rating}</Rating>
+                </Info>
+              </Item>
+            ))}
+          </ItemContainer>
+        </Container>
+      )}
     </>
   );
 };

@@ -9,6 +9,7 @@ import SportsEsportsTwoToneIcon from "@mui/icons-material/SportsEsportsTwoTone";
 import { Logout } from "../../Redux/Auth/AuthAction";
 import { emptyCart, GetDataFromCart } from "../../Redux/Products/action";
 import { mobile } from "../../Responsive/responsive";
+import { useEffect } from "react";
 
 const Container = styled.div`
   background: linear-gradient(rgba(12, 1, 1, 0.5), rgba(9, 0, 0, 0)),
@@ -94,6 +95,8 @@ const Navbar = () => {
     dispatch(Logout());
     dispatch(emptyCart());
   };
+
+  
 
   return (
     <>

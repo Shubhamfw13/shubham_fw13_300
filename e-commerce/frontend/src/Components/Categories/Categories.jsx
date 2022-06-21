@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
@@ -79,6 +79,17 @@ color: white;
 
 export const Categories = () => {
   const navigate = useNavigate();
+
+  useEffect(()=>{
+    let count = 0
+    let timer = setInterval(()=>{
+      console.log("Printing " + count++)
+    },10)
+    return ()=> {
+      clearInterval(timer)
+      console.log("unmount")
+    }
+  },[])
 
   return (
     <Container>

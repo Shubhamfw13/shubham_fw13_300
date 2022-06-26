@@ -19,6 +19,7 @@ const Container = styled.div`
   font-family: "Aldrich", sans-serif;
   color: white;
   ${mobile({ height: "50px" })}
+ 
 `;
 
 const Wrapper = styled.div`
@@ -33,6 +34,7 @@ const Left = styled.div`
   flex: 1;
   display: flex;
   align-items: center;
+  ${mobile({ flex:"none"})}
 `;
 
 const Lang = styled.span`
@@ -65,14 +67,14 @@ const Logo = styled.h1`
   font-size: 40px;
   color: #f593a2;
   font-family: "Special Elite", cursive;
-  ${mobile({ fontSize: "24px" })}
+  ${mobile({ fontSize: "18px" })}
 `;
 const Right = styled.div`
   flex: 1;
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  ${mobile({ flex: 2, justifyContent: "center" })}
+  ${mobile({ flex: 3, justifyContent: "center" })}
 `;
 
 const Menu = styled.div`

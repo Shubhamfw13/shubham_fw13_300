@@ -150,7 +150,7 @@ const GetDataFromCart = (user_id) => (dispatch) => {
 const UpdateCart = (data) => (dispatch) => {
   try {
     axios
-      .patch(`http://localhost:8070/cart/${data.id}`, {
+      .patch(`https://gamersparadisee.herokuapp.com/cart/${data.id}`, {
         ...data,
       })
       .then((res) => {

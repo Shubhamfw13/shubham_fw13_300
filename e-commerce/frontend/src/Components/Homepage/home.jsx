@@ -11,7 +11,7 @@ const Container = styled.div`
     ),
     url("https://images.hdqwalls.com/wallpapers/video-games-collage-wide.jpg")
       center;
-      height: 1100px;
+    
 `
 export const Home = () => {
  

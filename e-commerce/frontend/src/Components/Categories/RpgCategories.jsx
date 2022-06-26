@@ -14,7 +14,6 @@ const Container = styled.div`
   background: linear-gradient(rgba(1, 0, 0, 0.822), rgba(255, 255, 255, 0.244)),
     url("https://images.hdqwalls.com/wallpapers/video-games-collage-wide.jpg")
       center;
-  height: auto;
   border: 5px solid #0a1d32;
 `;
 
@@ -56,6 +55,9 @@ const ItemContainer = styled.div`
   text-align: center;
   grid-gap: 20px;
   grid-template-columns: 300px 300px 300px;
+  @media (max-width: 768px) {
+    grid-template-columns: 300px 
+  }
 `;
 
 const Item = styled.div`

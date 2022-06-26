@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { mobile } from "../../Responsive/responsive";
 
 const Container = styled.div`
   width: 100%;
-  height: auto;
   padding: 10px 20px;
-  margin-top: 200px;
+  height: 1000px;
   justify-content: space-between;
   display: grid;
   grid-gap: 10px;
@@ -14,17 +14,14 @@ const Container = styled.div`
   background-size: cover;
   align-items: center;
   justify-content: center;
-  
+  ${mobile({ gridTemplateColumns: "250px" })}
 `;
 const Action = styled.div`
-text-align: center;
+  text-align: center;
   height: 500px;
   padding: 10px 20px;
   transform: translateY(5px);
-  background: linear-gradient(
-      rgba(1, 0, 0, 0.066),
-      #ffffff21
-    ),
+  background: linear-gradient(rgba(1, 0, 0, 0.066), #ffffff21),
     url("https://c4.wallpaperflare.com/wallpaper/96/92/869/game-games-2014-best-wallpaper-preview.jpg")
       center;
   &:hover {
@@ -41,14 +38,11 @@ text-align: center;
   flex: 1;
 `;
 const Rpg = styled.div`
- text-align: center;
+  text-align: center;
   height: 500px;
   padding: 10px 20px;
   transform: translateY(5px);
-  background: linear-gradient(
-      rgba(255, 255, 255, 0.066),
-      #0401082b
-    ),
+  background: linear-gradient(rgba(255, 255, 255, 0.066), #0401082b),
     url("https://thegeek.games/wp-content/uploads/2021/05/the-geek-Blizzard-1.jpg")
       center;
   &:hover {
@@ -73,23 +67,23 @@ const Poster = styled.img`
   }
 `;
 const Categ = styled.h1`
-font-family: 'Carter One', cursive;
-color: white;
+  font-family: "Carter One", cursive;
+  color: white;
 `;
 
 export const Categories = () => {
   const navigate = useNavigate();
 
-  useEffect(()=>{
-    let count = 0
-    let timer = setInterval(()=>{
-      console.log("Printing " + count++)
-    },10)
-    return ()=> {
-      clearInterval(timer)
-      console.log("unmount")
-    }
-  },[])
+  useEffect(() => {
+    let count = 0;
+    let timer = setInterval(() => {
+      console.log("Printing " + count++);
+    }, 10);
+    return () => {
+      clearInterval(timer);
+      console.log("unmount");
+    };
+  }, []);
 
   return (
     <Container>
@@ -108,7 +102,6 @@ export const Categories = () => {
       >
         {/* <Poster src="https://thegeek.games/wp-content/uploads/2021/05/the-geek-Blizzard-1.jpg" /> */}
         <Categ>RPG</Categ>
-        
       </Rpg>
     </Container>
   );

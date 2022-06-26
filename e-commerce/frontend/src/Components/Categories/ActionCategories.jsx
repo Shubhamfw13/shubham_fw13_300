@@ -6,15 +6,20 @@ import { GetActionData, GetDataFromCart } from "../../Redux/Products/action";
 import { useNavigate } from "react-router-dom";
 import { mobile } from "../../Responsive/responsive";
 import LoadingAnimation from "../Loading/Loadig";
-
+import { height } from "@mui/system";
 
 const Container = styled.div`
   background-color: #0a1d32;
   color: white;
+  width: 100%;
+  padding: 10px 20px;
+  justify-content: space-between;
+  background-size: cover;
+  align-items: center;
+  justify-content: center;
   background: linear-gradient(rgba(1, 0, 0, 0.822), rgba(255, 255, 255, 0.244)),
     url("https://images.hdqwalls.com/wallpapers/video-games-collage-wide.jpg")
       center;
-  height: 1100px;
   border: 5px solid #0a1d32;
 `;
 
@@ -56,6 +61,7 @@ const ItemContainer = styled.div`
   text-align: center;
   grid-gap: 20px;
   grid-template-columns: 300px 300px 300px;
+  ${mobile({ gridTemplateColumns: "250px" ,marginLeft:"3%" })}
 `;
 
 const Item = styled.div`
@@ -89,6 +95,7 @@ const Image = styled.img`
   }
   height: 280px;
   z-index: 2;
+  ${mobile({height:"250px"})}
 `;
 const ProductTitle = styled.p`
   /* display: block; */
@@ -117,7 +124,7 @@ const ActionCategories = () => {
   return (
     <>
       {!Action.length ? (
-        <LoadingAnimation/>
+        <LoadingAnimation />
       ) : (
         <Container>
           <Navbar />
